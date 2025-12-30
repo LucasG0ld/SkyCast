@@ -3,8 +3,8 @@
 | SKY-001 | 1 | Expo Project Initialization (TypeScript + Tabs) | Done | [Report](reports/task_SKY-001.md) |
 | SKY-002 | 1 | Atomic Design Folder Scaffolding (atoms, molecules, organisms, pages) | Done | [Report](reports/task_SKY-002.md) |
 | SKY-003 | 1 | Core Dependencies Installation (Zustand, Axios, Expo Location, Reanimated, Lottie) | Done | [Report](reports/task_SKY-003.md) |
-| SKY-004 | 1 | Environment Variables Setup (.env + EXPO_PUBLIC_WEATHER_API_KEY) | In Progress | - |
-| SKY-005 | 1 | Weather API Service Implementation (services/weatherService.ts) | Todo | - |
+| SKY-004 | 1 | Environment Variables Setup (.env + EXPO_PUBLIC_WEATHER_API_KEY) | Done | [Report](reports/task_SKY-004.md) |
+| SKY-005 | 1 | Weather API Service Implementation (services/weatherService.ts) | In Progress | - |
 | SKY-006 | 1 | Zustand Stores Scaffolding (useWeatherStore.ts, useSettingsStore.ts) | Todo | - |
 | SKY-007 | 1 | GPS Location Hook Implementation (hooks/useLocation.ts) | Todo | - |
 | SKY-008 | 2 | React Navigation Configuration (Root Stack + Bottom Tabs) | Todo | - |
