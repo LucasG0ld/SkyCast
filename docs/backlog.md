@@ -8,8 +8,8 @@
 | SKY-006 | 1 | Zustand Stores Scaffolding (useWeatherStore.ts, useSettingsStore.ts) | Done | [Report](reports/task_SKY-006.md) |
 | SKY-007 | 1 | GPS Location Hook Implementation (hooks/useLocation.ts) | Done | [Report](reports/task_SKY-007.md) |
 | SKY-008 | 2 | React Navigation Configuration (Root Stack + Bottom Tabs) | Done | [Report](reports/task_SKY-008.md) |
-| SKY-009 | 2 | Search Page Atomic Structure & Layout | In Progress | - |
-| SKY-010 | 2 | WeatherAPI Auto-complete Integration in Search Bar | Todo | - |
+| SKY-009 | 2 | Search Page Atomic Structure & Layout | Done | [Report](reports/task_SKY-009.md) |
+| SKY-010 | 2 | WeatherAPI Auto-complete Integration in Search Bar | In Progress | - |
 | SKY-011 | 2 | Multi-city Swipe Navigation Logic (PagerView) | Todo | - |
 | SKY-012 | 2 | Empty State / Welcome Screen Design | Todo | - |
 | SKY-013 | 3 | Dynamic Background Engine Logic (Weather Code -> Asset mapping) | Todo | - |
