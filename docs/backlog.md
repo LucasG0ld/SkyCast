@@ -23,3 +23,4 @@
 | SKY-021 | 5 | React Landing Page Development (Website) | Done | [Report](reports/task_SKY-021.md) |
 | SKY-022 | 5 | Expo EAS Build Configuration for Android APK | Done | [Report](reports/task_SKY-022.md) |
 | SKY-023 | 5 | Final Deployment & GitHub Release Setup | Done | [Report](reports/FINAL_PROJECT_SUMMARY.md) |
+| FINAL_POLISH | - | QA Fixes and Code Cleanup | Done | [Report](reports/task_FINAL_POLISH.md) |

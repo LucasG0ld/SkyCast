@@ -79,8 +79,8 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
                     style={StyleSheet.absoluteFillObject}
                 />
                 <View style={styles.errorContainer}>
-                    <Text style={styles.errorText}>Unable to load weather</Text>
-                    <Text style={styles.errorSubtext}>{error || 'Please try again'}</Text>
+                    <Text style={styles.errorText}>{t('weather.error')}</Text>
+                    <Text style={styles.errorSubtext}>{error || t('weather.tryAgain')}</Text>
                 </View>
             </View>
         );
@@ -137,9 +137,6 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
                         uv={weatherData.current.uv}
                     />
 
-                    <Text style={styles.placeholder}>
-                        Forecast cards will be implemented in SKY-017
-                    </Text>
                 </ScrollView>
             </Animated.View>
         </View>
