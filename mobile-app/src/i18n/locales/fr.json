@@ -51,6 +51,8 @@
         "save": "Enregistrer",
         "done": "Terminé",
         "delete": "Supprimer",
-        "edit": "Modifier"
+        "edit": "Modifier",
+        "offline": "Mode Hors ligne",
+        "lastUpdated": "Dernière mise à jour: {{time}}"
     }
 }

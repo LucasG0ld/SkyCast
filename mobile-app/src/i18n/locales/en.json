@@ -51,6 +51,8 @@
         "save": "Save",
         "done": "Done",
         "delete": "Delete",
-        "edit": "Edit"
+        "edit": "Edit",
+        "offline": "Offline Mode",
+        "lastUpdated": "Last updated: {{time}}"
     }
 }

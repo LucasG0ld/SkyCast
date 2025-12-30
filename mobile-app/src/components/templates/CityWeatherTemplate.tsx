@@ -10,6 +10,10 @@ import { WeatherDetailsGrid } from '@/components/organisms/WeatherDetailsGrid';
 import { WeatherLottieIcon } from '@/components/atoms/WeatherLottieIcon';
 import { WeatherSkeleton } from '@/components/organisms/WeatherSkeleton';
 import { useWeatherUnit } from '@/hooks/useWeatherUnit';
+import { useNetworkStatus } from '@/hooks/useNetworkStatus';
+import { OfflineBanner } from '@/components/atoms/OfflineBanner';
+import { useWeatherStore } from '@/store/useWeatherStore';
+import { useTranslation } from 'react-i18next';
 
 interface CityWeatherTemplateProps {
     cityName: string;
@@ -22,7 +26,10 @@ interface CityWeatherTemplateProps {
 export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
     cityName,
 }) => {
+    const { t } = useTranslation();
     const { getTemp, getTempUnit } = useWeatherUnit();
+    const { isOffline } = useNetworkStatus();
+    const lastUpdated = useWeatherStore((state) => state.lastUpdated);
     const [weatherData, setWeatherData] = useState<WeatherResponse | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -86,6 +93,9 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
                 colors={background.gradient}
                 style={StyleSheet.absoluteFillObject}
             />
+
+            {/* Offline Banner */}
+            <OfflineBanner isOffline={isOffline} />
 
             {/* Content with fade-in animation */}
             <Animated.View entering={FadeIn.duration(600)} style={styles.animatedContent}>

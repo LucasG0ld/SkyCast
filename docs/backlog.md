@@ -19,7 +19,7 @@
 | SKY-017 | 4 | i18n Localization System Setup (FR/EN) | Done | [Report](reports/task_SKY-017.md) |
 | SKY-018 | 4 | Centralized Unit Conversion Logic (utils/converters.ts) | Done | [Report](reports/task_SKY-018.md) |
 | SKY-019 | 4 | UI Theme Switcher Implementation (Auto/Light/Dark) | Done | [Report](reports/task_SKY-019.md) |
-| SKY-020 | 4 | Offline Mode Banner & AsyncStorage Caching Persistence | In Progress | - |
+| SKY-020 | 4 | Offline Mode Banner & AsyncStorage Caching Persistence | Done | [Report](reports/task_SKY-020.md) |
 | SKY-021 | 5 | React Landing Page Development (Website) | Todo | - |
 | SKY-022 | 5 | Expo EAS Build Configuration for Android APK | Todo | - |
 | SKY-023 | 5 | Final Deployment & GitHub Release Setup | Todo | - |
