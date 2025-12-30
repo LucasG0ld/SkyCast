@@ -1,7 +1,7 @@
 | ID | Sprint | Task Description | Status | Report Link |
 |---|---|---|---|---|
-| SKY-001 | 1 | Expo Project Initialization (TypeScript + Tabs) | In Progress | - |
-| SKY-002 | 1 | Atomic Design Folder Scaffolding (atoms, molecules, organisms, pages) | Todo | - |
+| SKY-001 | 1 | Expo Project Initialization (TypeScript + Tabs) | Done | [Report](reports/task_SKY-001.md) |
+| SKY-002 | 1 | Atomic Design Folder Scaffolding (atoms, molecules, organisms, pages) | In Progress | - |
 | SKY-003 | 1 | Core Dependencies Installation (Zustand, Axios, Expo Location, Reanimated, Lottie) | Todo | - |
 | SKY-004 | 1 | Environment Variables Setup (.env + EXPO_PUBLIC_WEATHER_API_KEY) | Todo | - |
 | SKY-005 | 1 | Weather API Service Implementation (services/weatherService.ts) | Todo | - |
