@@ -5,7 +5,7 @@
  */
 
 export interface BackgroundStyle {
-    gradient: string[];
+    gradient: [string, string, string];
     opacity: number;
 }
 

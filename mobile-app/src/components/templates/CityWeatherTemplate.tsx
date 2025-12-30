@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MapPin } from 'lucide-react-native';
 import { getWeatherForecast } from '@/services/weatherService';
 import { WeatherResponse } from '@/types/weather';
 import { getWeatherBackground } from '@/utils/weatherBackgrounds';
+import { WeatherDetailsGrid } from '@/components/organisms/WeatherDetailsGrid';
 
 interface CityWeatherTemplateProps {
     cityName: string;
@@ -44,7 +45,7 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
             weatherData.current.condition.code,
             weatherData.current.is_day
         )
-        : { gradient: ['#F3F4F6', '#E5E7EB', '#D1D5DB'], opacity: 1 };
+        : { gradient: ['#F3F4F6', '#E5E7EB', '#D1D5DB'] as [string, string, string], opacity: 1 };
 
     if (isLoading) {
         return (
@@ -85,7 +86,11 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
             />
 
             {/* Content */}
-            <View style={styles.content}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.content}
+                showsVerticalScrollIndicator={false}
+            >
                 <View style={styles.header}>
                     <MapPin color="#FFFFFF" size={24} />
                     <Text style={styles.cityName}>{weatherData.location.name}</Text>
@@ -100,22 +105,20 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
                     </Text>
                 </View>
 
-                <View style={styles.details}>
-                    <Text style={styles.detailText}>
-                        Feels like {Math.round(weatherData.current.feelslike_c)}°
-                    </Text>
-                    <Text style={styles.detailText}>
-                        Humidity: {weatherData.current.humidity}%
-                    </Text>
-                    <Text style={styles.detailText}>
-                        Wind: {Math.round(weatherData.current.wind_kph)} km/h
-                    </Text>
-                </View>
+                {/* Glassmorphism Weather Details Grid */}
+                <WeatherDetailsGrid
+                    windKph={weatherData.current.wind_kph}
+                    humidity={weatherData.current.humidity}
+                    visibilityKm={weatherData.current.vis_km}
+                    pressureMb={weatherData.current.pressure_mb}
+                    feelsLikeC={weatherData.current.feelslike_c}
+                    uv={weatherData.current.uv}
+                />
 
                 <Text style={styles.placeholder}>
-                    Full weather dashboard will be implemented in SKY-016
+                    Forecast cards will be implemented in SKY-017
                 </Text>
-            </View>
+            </ScrollView>
         </View>
     );
 };
@@ -124,8 +127,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    content: {
+    scrollView: {
         flex: 1,
+    },
+    content: {
         padding: 20,
         paddingTop: 60,
     },
@@ -158,20 +163,10 @@ const styles = StyleSheet.create({
     condition: {
         fontSize: 24,
         color: '#FFFFFF',
+        marginBottom: 32,
         textShadowColor: 'rgba(0, 0, 0, 0.3)',
         textShadowOffset: { width: 0, height: 1 },
         textShadowRadius: 4,
-    },
-    details: {
-        gap: 8,
-        marginBottom: 32,
-    },
-    detailText: {
-        fontSize: 16,
-        color: 'rgba(255, 255, 255, 0.9)',
-        textShadowColor: 'rgba(0, 0, 0, 0.3)',
-        textShadowOffset: { width: 0, height: 1 },
-        textShadowRadius: 2,
     },
     placeholder: {
         fontSize: 14,

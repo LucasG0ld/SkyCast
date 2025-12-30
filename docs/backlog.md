@@ -13,8 +13,8 @@
 | SKY-011 | 2 | Multi-city Swipe Navigation Logic (PagerView) | Done | [Report](reports/task_SKY-011.md) |
 | SKY-012 | 2 | Empty State / Welcome Screen Design | Done | [Report](reports/task_SKY-012.md) |
 | SKY-013 | 3 | Dynamic Background Engine Logic (Weather Code -> Asset mapping) | Done | [Report](reports/task_SKY-013.md) |
-| SKY-014 | 3 | Glassmorphism Card Atoms & Molecules Development | In Progress | - |
-| SKY-015 | 3 | Lottie Animations Integration & Weather Condition Mapping | Todo | - |
+| SKY-014 | 3 | Glassmorphism Card Atoms & Molecules Development | Done | [Report](reports/task_SKY-014.md) |
+| SKY-015 | 3 | Lottie Animations Integration & Weather Condition Mapping | In Progress | - |
 | SKY-016 | 3 | Progressive Startup Loader & Skeleton Screens Implementation | Todo | - |
 | SKY-017 | 4 | i18n Localization System Setup (FR/EN) | Todo | - |
 | SKY-018 | 4 | Centralized Unit Conversion Logic (utils/converters.ts) | Todo | - |
