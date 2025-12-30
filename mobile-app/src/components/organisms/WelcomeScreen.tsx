@@ -4,9 +4,11 @@ import { useRouter } from 'expo-router';
 import LottieView from 'lottie-react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { Search } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 
 export const WelcomeScreen: React.FC = () => {
     const router = useRouter();
+    const { t } = useTranslation();
     const opacity = useSharedValue(0);
 
     useEffect(() => {
@@ -29,11 +31,11 @@ export const WelcomeScreen: React.FC = () => {
                 />
 
                 {/* Title */}
-                <Text style={styles.title}>Welcome to SkyCast</Text>
+                <Text style={styles.title}>{t('welcome.title')}</Text>
 
                 {/* Subtitle */}
                 <Text style={styles.subtitle}>
-                    Start by adding a city to track its weather in real-time
+                    {t('welcome.subtitle')}
                 </Text>
 
                 {/* Action Button */}
@@ -44,7 +46,7 @@ export const WelcomeScreen: React.FC = () => {
                     ]}
                     onPress={() => router.push('/(tabs)/search')}>
                     <Search color="#FFFFFF" size={22} />
-                    <Text style={styles.actionButtonText}>Add Your First City</Text>
+                    <Text style={styles.actionButtonText}>{t('welcome.button')}</Text>
                 </Pressable>
             </View>
         </Animated.View>

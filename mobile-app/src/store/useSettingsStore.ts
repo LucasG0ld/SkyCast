@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import i18n from '@/i18n';
 
 type Unit = 'Celsius' | 'Fahrenheit';
 type Language = 'fr' | 'en';
@@ -31,7 +32,10 @@ export const useSettingsStore = create<SettingsState>()(
 
             // Actions
             setUnit: (unit) => set({ unit }),
-            setLanguage: (language) => set({ language }),
+            setLanguage: (language) => {
+                i18n.changeLanguage(language);
+                set({ language });
+            },
             setTheme: (theme) => set({ theme }),
             setHydrated: () => set({ isHydrated: true }),
         }),

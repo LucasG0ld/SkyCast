@@ -1,0 +1,56 @@
+{
+    "welcome": {
+        "title": "Bienvenue sur SkyCast",
+        "subtitle": "Votre compagnon météo immersif. Ajoutez votre première ville pour commencer.",
+        "button": "Ajouter une ville"
+    },
+    "search": {
+        "placeholder": "Rechercher une ville...",
+        "noResults": "Aucune ville trouvée",
+        "searching": "Recherche en cours..."
+    },
+    "weather": {
+        "loading": "Chargement de la météo...",
+        "error": "Impossible de charger la météo",
+        "tryAgain": "Veuillez réessayer",
+        "feelsLike": "Ressenti {{temp}}°"
+    },
+    "details": {
+        "wind": "Vent",
+        "humidity": "Humidité",
+        "visibility": "Visibilité",
+        "pressure": "Pression",
+        "feelsLike": "Ressenti",
+        "uvIndex": "Indice UV"
+    },
+    "navigation": {
+        "weather": "Météo",
+        "search": "Recherche",
+        "settings": "Paramètres"
+    },
+    "settings": {
+        "title": "Paramètres",
+        "language": "Langue",
+        "units": "Unités",
+        "theme": "Thème",
+        "about": "À propos"
+    },
+    "units": {
+        "celsius": "Celsius",
+        "fahrenheit": "Fahrenheit",
+        "metric": "Métrique",
+        "imperial": "Impérial"
+    },
+    "theme": {
+        "auto": "Auto",
+        "light": "Clair",
+        "dark": "Sombre"
+    },
+    "common": {
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "done": "Terminé",
+        "delete": "Supprimer",
+        "edit": "Modifier"
+    }
+}
