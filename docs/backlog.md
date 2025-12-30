@@ -10,8 +10,8 @@
 | SKY-008 | 2 | React Navigation Configuration (Root Stack + Bottom Tabs) | Done | [Report](reports/task_SKY-008.md) |
 | SKY-009 | 2 | Search Page Atomic Structure & Layout | Done | [Report](reports/task_SKY-009.md) |
 | SKY-010 | 2 | WeatherAPI Auto-complete Integration in Search Bar | Done | [Report](reports/task_SKY-010.md) |
-| SKY-011 | 2 | Multi-city Swipe Navigation Logic (PagerView) | In Progress | - |
-| SKY-012 | 2 | Empty State / Welcome Screen Design | Todo | - |
+| SKY-011 | 2 | Multi-city Swipe Navigation Logic (PagerView) | Done | [Report](reports/task_SKY-011.md) |
+| SKY-012 | 2 | Empty State / Welcome Screen Design | In Progress | - |
 | SKY-013 | 3 | Dynamic Background Engine Logic (Weather Code -> Asset mapping) | Todo | - |
 | SKY-014 | 3 | Glassmorphism Card Atoms & Molecules Development | Todo | - |
 | SKY-015 | 3 | Lottie Animations Integration & Weather Condition Mapping | Todo | - |
