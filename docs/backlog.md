@@ -5,8 +5,8 @@
 | SKY-003 | 1 | Core Dependencies Installation (Zustand, Axios, Expo Location, Reanimated, Lottie) | Done | [Report](reports/task_SKY-003.md) |
 | SKY-004 | 1 | Environment Variables Setup (.env + EXPO_PUBLIC_WEATHER_API_KEY) | Done | [Report](reports/task_SKY-004.md) |
 | SKY-005 | 1 | Weather API Service Implementation (services/weatherService.ts) | Done | [Report](reports/task_SKY-005.md) |
-| SKY-006 | 1 | Zustand Stores Scaffolding (useWeatherStore.ts, useSettingsStore.ts) | In Progress | - |
-| SKY-007 | 1 | GPS Location Hook Implementation (hooks/useLocation.ts) | Todo | - |
+| SKY-006 | 1 | Zustand Stores Scaffolding (useWeatherStore.ts, useSettingsStore.ts) | Done | [Report](reports/task_SKY-006.md) |
+| SKY-007 | 1 | GPS Location Hook Implementation (hooks/useLocation.ts) | In Progress | - |
 | SKY-008 | 2 | React Navigation Configuration (Root Stack + Bottom Tabs) | Todo | - |
 | SKY-009 | 2 | Search Page Atomic Structure & Layout | Todo | - |
 | SKY-010 | 2 | WeatherAPI Auto-complete Integration in Search Bar | Todo | - |
