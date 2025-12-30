@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MapPin } from 'lucide-react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
 import { getWeatherForecast } from '@/services/weatherService';
 import { WeatherResponse } from '@/types/weather';
 import { getWeatherBackground } from '@/utils/weatherBackgrounds';
 import { WeatherDetailsGrid } from '@/components/organisms/WeatherDetailsGrid';
 import { WeatherLottieIcon } from '@/components/atoms/WeatherLottieIcon';
+import { WeatherSkeleton } from '@/components/organisms/WeatherSkeleton';
 
 interface CityWeatherTemplateProps {
     cityName: string;
@@ -55,10 +57,7 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
                     colors={background.gradient}
                     style={StyleSheet.absoluteFillObject}
                 />
-                <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color="#FFFFFF" />
-                    <Text style={styles.loadingText}>Loading weather...</Text>
-                </View>
+                <WeatherSkeleton />
             </View>
         );
     }
@@ -86,55 +85,60 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
                 style={StyleSheet.absoluteFillObject}
             />
 
-            {/* Content */}
-            <ScrollView
-                style={styles.scrollView}
-                contentContainerStyle={styles.content}
-                showsVerticalScrollIndicator={false}
-            >
-                <View style={styles.header}>
-                    <MapPin color="#FFFFFF" size={24} />
-                    <Text style={styles.cityName}>{weatherData.location.name}</Text>
-                </View>
+            {/* Content with fade-in animation */}
+            <Animated.View entering={FadeIn.duration(600)} style={styles.animatedContent}>
+                <ScrollView
+                    style={styles.scrollView}
+                    contentContainerStyle={styles.content}
+                    showsVerticalScrollIndicator={false}
+                >
+                    <View style={styles.header}>
+                        <MapPin color="#FFFFFF" size={24} />
+                        <Text style={styles.cityName}>{weatherData.location.name}</Text>
+                    </View>
 
-                {/* Animated Weather Icon */}
-                <View style={styles.animationContainer}>
-                    <WeatherLottieIcon
-                        weatherCode={weatherData.current.condition.code}
-                        isDay={weatherData.current.is_day}
-                        size={180}
+                    {/* Animated Weather Icon */}
+                    <View style={styles.animationContainer}>
+                        <WeatherLottieIcon
+                            weatherCode={weatherData.current.condition.code}
+                            isDay={weatherData.current.is_day}
+                            size={180}
+                        />
+                    </View>
+
+                    <View style={styles.mainWeather}>
+                        <Text style={styles.temperature}>
+                            {Math.round(weatherData.current.temp_c)}°
+                        </Text>
+                        <Text style={styles.condition}>
+                            {weatherData.current.condition.text}
+                        </Text>
+                    </View>
+
+                    {/* Glassmorphism Weather Details Grid */}
+                    <WeatherDetailsGrid
+                        windKph={weatherData.current.wind_kph}
+                        humidity={weatherData.current.humidity}
+                        visibilityKm={weatherData.current.vis_km}
+                        pressureMb={weatherData.current.pressure_mb}
+                        feelsLikeC={weatherData.current.feelslike_c}
+                        uv={weatherData.current.uv}
                     />
-                </View>
 
-                <View style={styles.mainWeather}>
-                    <Text style={styles.temperature}>
-                        {Math.round(weatherData.current.temp_c)}°
+                    <Text style={styles.placeholder}>
+                        Forecast cards will be implemented in SKY-017
                     </Text>
-                    <Text style={styles.condition}>
-                        {weatherData.current.condition.text}
-                    </Text>
-                </View>
-
-                {/* Glassmorphism Weather Details Grid */}
-                <WeatherDetailsGrid
-                    windKph={weatherData.current.wind_kph}
-                    humidity={weatherData.current.humidity}
-                    visibilityKm={weatherData.current.vis_km}
-                    pressureMb={weatherData.current.pressure_mb}
-                    feelsLikeC={weatherData.current.feelslike_c}
-                    uv={weatherData.current.uv}
-                />
-
-                <Text style={styles.placeholder}>
-                    Forecast cards will be implemented in SKY-017
-                </Text>
-            </ScrollView>
+                </ScrollView>
+            </Animated.View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+    },
+    animatedContent: {
         flex: 1,
     },
     scrollView: {
