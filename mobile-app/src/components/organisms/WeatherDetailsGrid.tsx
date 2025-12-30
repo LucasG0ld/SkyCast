@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Wind, Droplets, Eye, Gauge, Thermometer, Sun } from 'lucide-react-native';
 import { WeatherDetailCard } from '@/components/molecules/WeatherDetailCard';
+import { useWeatherUnit } from '@/hooks/useWeatherUnit';
 
 interface WeatherDetail {
     icon: typeof Wind;
@@ -30,11 +31,12 @@ export const WeatherDetailsGrid: React.FC<WeatherDetailsGridProps> = ({
     feelsLikeC,
     uv,
 }) => {
+    const { formatWind, formatVisibility, formatTemp } = useWeatherUnit();
     const details: WeatherDetail[] = [
         {
             icon: Wind,
             label: 'Wind',
-            value: `${Math.round(windKph)} km/h`,
+            value: formatWind(windKph),
         },
         {
             icon: Droplets,
@@ -44,7 +46,7 @@ export const WeatherDetailsGrid: React.FC<WeatherDetailsGridProps> = ({
         {
             icon: Eye,
             label: 'Visibility',
-            value: `${visibilityKm} km`,
+            value: formatVisibility(visibilityKm),
         },
         {
             icon: Gauge,
@@ -54,7 +56,7 @@ export const WeatherDetailsGrid: React.FC<WeatherDetailsGridProps> = ({
         {
             icon: Thermometer,
             label: 'Feels Like',
-            value: `${Math.round(feelsLikeC)}°`,
+            value: formatTemp(feelsLikeC),
         },
         {
             icon: Sun,

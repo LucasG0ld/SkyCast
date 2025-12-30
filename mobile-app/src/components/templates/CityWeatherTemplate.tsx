@@ -9,6 +9,7 @@ import { getWeatherBackground } from '@/utils/weatherBackgrounds';
 import { WeatherDetailsGrid } from '@/components/organisms/WeatherDetailsGrid';
 import { WeatherLottieIcon } from '@/components/atoms/WeatherLottieIcon';
 import { WeatherSkeleton } from '@/components/organisms/WeatherSkeleton';
+import { useWeatherUnit } from '@/hooks/useWeatherUnit';
 
 interface CityWeatherTemplateProps {
     cityName: string;
@@ -21,6 +22,7 @@ interface CityWeatherTemplateProps {
 export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
     cityName,
 }) => {
+    const { getTemp, getTempUnit } = useWeatherUnit();
     const [weatherData, setWeatherData] = useState<WeatherResponse | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -108,7 +110,7 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
 
                     <View style={styles.mainWeather}>
                         <Text style={styles.temperature}>
-                            {Math.round(weatherData.current.temp_c)}°
+                            {getTemp(weatherData.current.temp_c)}{getTempUnit()}
                         </Text>
                         <Text style={styles.condition}>
                             {weatherData.current.condition.text}
