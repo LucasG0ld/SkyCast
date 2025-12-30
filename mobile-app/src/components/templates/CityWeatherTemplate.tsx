@@ -6,6 +6,7 @@ import { getWeatherForecast } from '@/services/weatherService';
 import { WeatherResponse } from '@/types/weather';
 import { getWeatherBackground } from '@/utils/weatherBackgrounds';
 import { WeatherDetailsGrid } from '@/components/organisms/WeatherDetailsGrid';
+import { WeatherLottieIcon } from '@/components/atoms/WeatherLottieIcon';
 
 interface CityWeatherTemplateProps {
     cityName: string;
@@ -96,6 +97,15 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
                     <Text style={styles.cityName}>{weatherData.location.name}</Text>
                 </View>
 
+                {/* Animated Weather Icon */}
+                <View style={styles.animationContainer}>
+                    <WeatherLottieIcon
+                        weatherCode={weatherData.current.condition.code}
+                        isDay={weatherData.current.is_day}
+                        size={180}
+                    />
+                </View>
+
                 <View style={styles.mainWeather}>
                     <Text style={styles.temperature}>
                         {Math.round(weatherData.current.temp_c)}°
@@ -148,9 +158,13 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: 0, height: 2 },
         textShadowRadius: 4,
     },
+    animationContainer: {
+        alignItems: 'center',
+        marginBottom: 16,
+    },
     mainWeather: {
         alignItems: 'center',
-        marginBottom: 32,
+        marginBottom: 24,
     },
     temperature: {
         fontSize: 96,
