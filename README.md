@@ -1,58 +1,65 @@
-# SkyCast 🌦️
+# SkyCast ⛅
 
-SkyCast is a premium, immersive weather application built with React Native and Expo. It provides a visually stunning experience where the interface adapts dynamically to the weather conditions and local time of the selected city using glassmorphism and animated landscapes.
+> **The Weather, Reimagined.**
 
-## 🚀 Vision
-The goal of SkyCast is to move beyond static data points and transform weather checking into an atmospheric experience. Every detail, from the background to the icons, is designed to reflect the real-world conditions of the city you are viewing.
+SkyCast is a modern, immersive weather application built with React Native and Expo. It features dynamic backgrounds, glassmorphism design, and a robust offline-first architecture.
 
-## 🏗️ Architecture: Atomic Design
-We follow a strict **Atomic Design** pattern to ensure modularity and scalability:
+![SkyCast Banner](landing-page/public/banner_placeholder.png)
 
--   **Atoms**: Primitive UI elements (Buttons, Text, Blur effects).
--   **Molecules**: Simple groups of atoms (SearchBar, WeatherIcon).
--   **Organisms**: Complex blocks (ForecastList, GlassmorphismCard).
--   **Pages**: Full-screen layouts (HomeScreen, SearchScreen).
+## ✨ Features
 
-## 🛠️ Tech Stack
+- **Immersive UI**: dynamic backgrounds that adapt to current weather conditions and time of day.
+- **Glassmorphism**: Sleek, modern design with frosted glass effects.
+- **Offline Mode**: Access cached weather data even without an internet connection.
+- **Multi-Language**: Native support for English and French (auto-detected).
+- **Customizable**: Choose your preferred units (Metric/Imperial) and Theme (Light/Dark/Auto).
+- **Animations**: Smooth transitions and Lottie-powered weather icons.
 
-### Core
--   **Framework**: React Native (Expo SDK)
--   **Language**: TypeScript (Strict)
--   **State Management**: Zustand (+ Persistence)
--   **Navigation**: React Navigation
+## 🚀 Tech Stack
 
-### UI & UX
--   **Styling**: StyleSheet + Expo Blur (Glassmorphism)
--   **Animations**: Lottie + React Native Reanimated
--   **Visuals**: Dynamic backgrounds based on local city time and weather codes.
+- **Framework**: React Native (Expo SDK 52)
+- **Language**: TypeScript
+- **State Management**: Zustand (with Persistence)
+- **Styling**: StyleSheet, Expo Blur, Lucide Icons
+- **Animations**: React Native Reanimated, Lottie
+- **Navigation**: Expo Router (File-based routing)
+- **API**: WeatherAPI.com
+- **Build**: EAS (Expo Application Services)
 
-### Data & Services
--   **API**: WeatherAPI.com
--   **Geolocation**: Expo Location
--   **HTTP Client**: Axios
--   **Storage**: AsyncStorage
+## 📱 Installation (Android)
 
-## 📂 Project Structure
-```text
-/
-├── .agent/         # AI Configuration & workflows
-├── docs/           # Documentation & Backlog
-│   ├── reports/    # Task completion reports
-│   └── ...
-├── src/            # Application source (to be initialized)
-│   ├── components/ # Atomic components
-│   ├── hooks/      # Custom React hooks
-│   ├── services/   # Data services (API)
-│   ├── store/      # Zustand stores
-│   └── utils/      # Helpers & Converters
-├── README.md       # Project overview
-└── .gitignore      # Git exclusions
+You can download the latest APK from our [Releases Page](https://github.com/LucasG0ld/SkyCast/releases).
+
+**Manual Build:**
+1.  Clone the repository.
+2.  Install dependencies: `npm install` inside `mobile-app/`.
+3.  Run `npx expo prebuild`.
+4.  Build locally or with EAS:
+    ```bash
+    eas build -p android --profile preview --local
+    ```
+
+## 🌐 Web Landing Page
+
+Check out the promotional website in `landing-page/`.
+To run it locally:
+1.  `cd landing-page`
+2.  `npm install`
+3.  `npm run dev`
+
+## 🛠️ Development
+
+**Prerequisites**:
+- Node.js (v18+)
+- Expo Go app on your device or Android Emulator.
+
+**Running the App**:
+```bash
+cd mobile-app
+npm start
 ```
+Scan the QR code with Expo Go.
 
-## 📈 Roadmap
-SkyCast is being developed in 5 main Sprints:
-1.  **Foundation & Data**: API, State, and Core logic.
-2.  **Navigation & Search**: Multi-city management and search.
-3.  **Immersive UI**: Glassmorphism and animations.
-4.  **Settings & Offline**: Localization and caching.
-5.  **Deployment**: Landing page and Android APK.
+## 📄 License
+
+MIT © 2025 Lucas Gold.

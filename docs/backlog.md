@@ -22,4 +22,4 @@
 | SKY-020 | 4 | Offline Mode Banner & AsyncStorage Caching Persistence | Done | [Report](reports/task_SKY-020.md) |
 | SKY-021 | 5 | React Landing Page Development (Website) | Done | [Report](reports/task_SKY-021.md) |
 | SKY-022 | 5 | Expo EAS Build Configuration for Android APK | Done | [Report](reports/task_SKY-022.md) |
-| SKY-023 | 5 | Final Deployment & GitHub Release Setup | In Progress | - |
+| SKY-023 | 5 | Final Deployment & GitHub Release Setup | Done | [Report](reports/FINAL_PROJECT_SUMMARY.md) |
