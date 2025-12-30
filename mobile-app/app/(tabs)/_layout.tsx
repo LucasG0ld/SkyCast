@@ -1,39 +1,44 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import { Platform } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { Home, Search, Settings } from 'lucide-react-native';
+import { useAppTheme } from '@/hooks/useAppTheme';
 
 export default function TabLayout() {
+  const { colors, isDark } = useAppTheme();
+
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#3B82F6', // Sky blue for active state
-        tabBarInactiveTintColor: '#9CA3AF', // Gray for inactive state
+        tabBarActiveTintColor: colors.tabIconSelected,
+        tabBarInactiveTintColor: colors.tabIconDefault,
         headerShown: true,
         headerTransparent: true,
+        headerTitleStyle: {
+          color: colors.text,
+        },
         tabBarStyle: Platform.select({
           ios: {
             position: 'absolute',
             backgroundColor: 'transparent',
+            borderTopWidth: 0,
           },
           default: {
-            backgroundColor: 'rgba(255, 255, 255, 0.8)',
-            borderTopWidth: 0,
+            backgroundColor: colors.tabBar,
+            borderTopWidth: 0.5,
+            borderTopColor: colors.border,
             elevation: 0,
+            height: 60,
+            paddingBottom: 8,
           },
         }),
         tabBarBackground: () =>
           Platform.OS === 'ios' ? (
             <BlurView
               intensity={80}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                bottom: 0,
-                right: 0,
-              }}
+              tint={isDark ? 'dark' : 'light'}
+              style={StyleSheet.absoluteFill}
             />
           ) : null,
       }}>

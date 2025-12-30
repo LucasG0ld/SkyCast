@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { LucideIcon } from 'lucide-react-native';
 import { WeatherDetailIcon } from '@/components/atoms/WeatherDetailIcon';
+import { useAppTheme } from '@/hooks/useAppTheme';
 
 interface WeatherDetailCardProps {
     Icon: LucideIcon;
@@ -19,10 +20,12 @@ export const WeatherDetailCard: React.FC<WeatherDetailCardProps> = ({
     label,
     value,
 }) => {
+    const { isDark } = useAppTheme();
+
     return (
         <View style={styles.container}>
-            <BlurView intensity={25} style={styles.blur}>
-                <View style={styles.content}>
+            <BlurView intensity={25} tint={isDark ? 'dark' : 'light'} style={styles.blur}>
+                <View style={[styles.content]}>
                     <WeatherDetailIcon Icon={Icon} size={24} />
                     <View style={styles.textContainer}>
                         <Text style={styles.label}>{label}</Text>
