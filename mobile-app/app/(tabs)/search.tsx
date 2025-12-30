@@ -1,38 +1,61 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import React from 'react';
+import { View, StyleSheet, SafeAreaView, ActivityIndicator, Text } from 'react-native';
+import { useRouter } from 'expo-router';
 import { SearchBar } from '@/components/molecules/SearchBar';
 import { CitySearchResults } from '@/components/organisms/CitySearchResults';
-
-// Placeholder data for demonstration
-const PLACEHOLDER_CITIES = [
-    { id: 1, name: 'Paris', region: 'Île-de-France', country: 'France' },
-    { id: 2, name: 'London', region: 'England', country: 'United Kingdom' },
-    { id: 3, name: 'New York', region: 'New York', country: 'United States' },
-    { id: 4, name: 'Tokyo', region: 'Tokyo', country: 'Japan' },
-    { id: 5, name: 'Sydney', region: 'New South Wales', country: 'Australia' },
-];
+import { useSearch } from '@/hooks/useSearch';
+import { useWeatherStore } from '@/store/useWeatherStore';
 
 export default function SearchScreen() {
-    const [searchQuery, setSearchQuery] = useState('');
+    const router = useRouter();
+    const { query, setQuery, results, isLoading, error } = useSearch();
+    const addCity = useWeatherStore((state) => state.addCity);
 
     const handleCityPress = (city: { id: number; name: string; region: string; country: string }) => {
-        console.log('Selected city:', city.name);
-        // Logic will be added in SKY-010
+        // Add city to saved cities in store
+        addCity(city.name);
+
+        // Navigate to main weather screen
+        router.push('/(tabs)/');
     };
+
+    // Transform SearchResult to the format expected by CitySearchResults
+    const transformedResults = results.map((result) => ({
+        id: result.id,
+        name: result.name,
+        region: result.region,
+        country: result.country,
+    }));
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.searchContainer}>
                 <SearchBar
-                    value={searchQuery}
-                    onChangeText={setSearchQuery}
+                    value={query}
+                    onChangeText={setQuery}
                     placeholder="Search for a city..."
                 />
             </View>
-            <CitySearchResults
-                cities={PLACEHOLDER_CITIES}
-                onCityPress={handleCityPress}
-            />
+
+            {error && (
+                <View style={styles.errorContainer}>
+                    <Text style={styles.errorText}>{error}</Text>
+                </View>
+            )}
+
+            {isLoading && (
+                <View style={styles.loadingContainer}>
+                    <ActivityIndicator size="large" color="#3B82F6" />
+                    <Text style={styles.loadingText}>Searching...</Text>
+                </View>
+            )}
+
+            {!isLoading && !error && (
+                <CitySearchResults
+                    cities={transformedResults}
+                    onCityPress={handleCityPress}
+                />
+            )}
         </SafeAreaView>
     );
 }
@@ -45,5 +68,26 @@ const styles = StyleSheet.create({
     searchContainer: {
         padding: 16,
         paddingTop: 8,
+    },
+    loadingContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 12,
+    },
+    loadingText: {
+        fontSize: 16,
+        color: '#6B7280',
+    },
+    errorContainer: {
+        padding: 16,
+        backgroundColor: '#FEE2E2',
+        marginHorizontal: 16,
+        marginTop: 8,
+        borderRadius: 8,
+    },
+    errorText: {
+        color: '#DC2626',
+        fontSize: 14,
     },
 });
