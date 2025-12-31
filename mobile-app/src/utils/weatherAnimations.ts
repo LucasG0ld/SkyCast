@@ -2,75 +2,47 @@
  * Weather Animation Mapping
  * Maps WeatherAPI condition codes to Lottie animation files
  * Handles Day/Night variations for immersive experience
+ * 
+ * NOTE: Currently using limited animation set with intelligent fallbacks
+ * Future: Add more specific animations for each weather type
  */
+
+// Available Lottie animation files
+const ANIMATIONS = {
+    clearDay: require('@/assets/lottie/clear-day.json'),
+    clearNight: require('@/assets/lottie/clear-night.json'),
+    cloudyDay: require('@/assets/lottie/cloudy-day.json'),
+};
 
 /**
  * Get Lottie animation source based on weather condition and time of day
  * @param weatherCode - WeatherAPI condition code
  * @param isDay - 1 for day, 0 for night
- * @returns Lottie animation source (require statement or URL)
+ * @returns Lottie animation source
  */
 export const getWeatherAnimation = (weatherCode: number, isDay: number) => {
     // Night animations (isDay === 0)
     if (isDay === 0) {
         // Clear night - animated moon and stars
         if (weatherCode === 1000) {
-            return require('@/assets/lottie/clear-night.json');
+            return ANIMATIONS.clearNight;
         }
 
-        // Rainy night
-        if ([1063, 1180, 1183, 1186, 1189, 1192, 1195, 1240, 1243, 1246].includes(weatherCode)) {
-            return require('@/assets/lottie/rainy-night.json');
-        }
-
-        // Snowy night
-        if ([1066, 1114, 1210, 1213, 1216, 1219, 1222, 1225, 1255, 1258].includes(weatherCode)) {
-            return require('@/assets/lottie/snowy-night.json');
-        }
-
-        // Thunderstorm night
-        if ([1087, 1273, 1276, 1279, 1282].includes(weatherCode)) {
-            return require('@/assets/lottie/thunderstorm-night.json');
-        }
-
-        // Cloudy night (default)
-        return require('@/assets/lottie/cloudy-night.json');
+        // All other night conditions use clear-night as fallback
+        // (cloudy-night, rainy-night, etc. to be added later)
+        return ANIMATIONS.clearNight;
     }
 
     // Day animations (isDay === 1)
 
     // Clear day - animated sun
     if (weatherCode === 1000) {
-        return require('@/assets/lottie/clear-day.json');
+        return ANIMATIONS.clearDay;
     }
 
-    // Partly cloudy
-    if ([1003, 1006, 1009].includes(weatherCode)) {
-        return require('@/assets/lottie/partly-cloudy.json');
-    }
-
-    // Rainy day
-    if ([1063, 1180, 1183, 1186, 1189, 1192, 1195, 1240, 1243, 1246].includes(weatherCode)) {
-        return require('@/assets/lottie/rainy-day.json');
-    }
-
-    // Snowy day
-    if ([1066, 1114, 1210, 1213, 1216, 1219, 1222, 1225, 1255, 1258].includes(weatherCode)) {
-        return require('@/assets/lottie/snowy-day.json');
-    }
-
-    // Thunderstorm
-    if ([1087, 1273, 1276, 1279, 1282].includes(weatherCode)) {
-        return require('@/assets/lottie/thunderstorm.json');
-    }
-
-    // Foggy/Mist
-    if ([1030, 1135, 1147].includes(weatherCode)) {
-        return require('@/assets/lottie/foggy.json');
-    }
-
-    // Default cloudy day
-    return require('@/assets/lottie/cloudy-day.json');
+    // All cloudy/rainy/snowy/stormy conditions use cloudy-day as fallback
+    // (partly-cloudy, rainy-day, snowy-day, thunderstorm, foggy to be added later)
+    return ANIMATIONS.cloudyDay;
 };
 
 /**
