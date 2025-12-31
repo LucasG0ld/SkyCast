@@ -14,11 +14,11 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 }) => {
     return (
         <TextInput
-            style={styles.input}
+            style={[styles.input, { color: '#FFFFFF' }]}
             value={value}
             onChangeText={onChangeText}
             placeholder={placeholder}
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="rgba(255, 255, 255, 0.5)"
             autoCapitalize="words"
             autoCorrect={false}
             {...props}

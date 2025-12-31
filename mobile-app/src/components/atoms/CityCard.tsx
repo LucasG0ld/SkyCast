@@ -1,75 +1,105 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
-import { BlurView } from 'expo-blur';
-import { MapPin } from 'lucide-react-native';
+import { LucideIcon, MapPin } from 'lucide-react-native';
+import { GlassCard } from './GlassCard';
+import { useAppTheme } from '@/hooks/useAppTheme';
 
 interface CityCardProps {
     name: string;
-    region: string;
-    country: string;
+    condition?: string;
+    temp?: string;
+    isSelected?: boolean;
     onPress?: () => void;
 }
 
+/**
+ * CityCard Component (v11)
+ * Displays city name, condition, and temperature in a GlassCard
+ * Features: Left side info, Right side extralight temperature
+ */
 export const CityCard: React.FC<CityCardProps> = ({
     name,
-    region,
-    country,
+    condition,
+    temp,
+    isSelected,
     onPress,
 }) => {
+    const { colors, typography, spacing } = useAppTheme();
+
     return (
         <Pressable onPress={onPress} style={({ pressed }) => [
-            styles.container,
+            styles.pressable,
             pressed && styles.pressed,
         ]}>
-            <BlurView intensity={20} style={styles.blur}>
+            <GlassCard
+                style={[
+                    styles.container,
+                    isSelected && { borderColor: colors.accent, borderWidth: 1.5 }
+                ]}
+            >
                 <View style={styles.content}>
-                    <MapPin color="#3B82F6" size={20} style={styles.icon} />
-                    <View style={styles.textContainer}>
-                        <Text style={styles.cityName}>{name}</Text>
-                        <Text style={styles.location}>
-                            {region ? `${region}, ${country}` : country}
-                        </Text>
+                    {/* Left Side: Icon + City + Condition */}
+                    <View style={styles.leftContent}>
+                        <MapPin color={colors.accent} size={20} />
+                        <View style={styles.textContainer}>
+                            <Text style={[styles.cityName, { color: colors.text, fontSize: typography.sizes.bodyLarge, fontWeight: typography.weights.bold }]}>
+                                {name}
+                            </Text>
+                            {condition && (
+                                <Text style={[styles.condition, { color: colors.textSecondary, fontSize: typography.sizes.bodySmall }]}>
+                                    {condition}
+                                </Text>
+                            )}
+                        </View>
                     </View>
+
+                    {/* Right Side: Temperature */}
+                    {temp && (
+                        <Text style={[styles.temperature, { color: colors.text, fontSize: typography.sizes.tempCard, fontWeight: typography.weights.extralight }]}>
+                            {temp}
+                        </Text>
+                    )}
                 </View>
-            </BlurView>
+            </GlassCard>
         </Pressable>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        marginHorizontal: 16,
-        marginVertical: 6,
-        borderRadius: 16,
-        overflow: 'hidden',
-        borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, 0.3)',
+    pressable: {
+        width: '100%',
     },
-    blur: {
-        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    container: {
+        marginBottom: 12,
+        marginHorizontal: 16,
     },
     content: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
         padding: 16,
     },
-    icon: {
-        marginRight: 12,
+    leftContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
+        flex: 1,
     },
     textContainer: {
         flex: 1,
     },
     cityName: {
-        fontSize: 18,
-        fontWeight: '600',
-        color: '#1F2937',
-        marginBottom: 4,
+        marginBottom: 2,
     },
-    location: {
-        fontSize: 14,
-        color: '#6B7280',
+    condition: {
+        opacity: 0.8,
+    },
+    temperature: {
+        marginLeft: 12,
     },
     pressed: {
-        opacity: 0.7,
+        opacity: 0.85,
+        transform: [{ scale: 0.98 }],
     },
 });
+

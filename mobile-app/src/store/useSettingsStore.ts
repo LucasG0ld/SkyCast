@@ -12,12 +12,15 @@ interface SettingsState {
     unit: Unit;
     language: Language;
     theme: Theme;
+    searchHistory: string[];
     isHydrated: boolean;
 
     // Actions
     setUnit: (unit: Unit) => void;
     setLanguage: (language: Language) => void;
     setTheme: (theme: Theme) => void;
+    addToSearchHistory: (city: string) => void;
+    clearSearchHistory: () => void;
     setHydrated: () => void;
 }
 
@@ -28,6 +31,7 @@ export const useSettingsStore = create<SettingsState>()(
             unit: 'Celsius',
             language: 'en',
             theme: 'auto',
+            searchHistory: [],
             isHydrated: false,
 
             // Actions
@@ -37,6 +41,10 @@ export const useSettingsStore = create<SettingsState>()(
                 set({ language });
             },
             setTheme: (theme) => set({ theme }),
+            addToSearchHistory: (city) => set((state) => ({
+                searchHistory: [city, ...state.searchHistory.filter(c => c !== city)].slice(0, 10)
+            })),
+            clearSearchHistory: () => set({ searchHistory: [] }),
             setHydrated: () => set({ isHydrated: true }),
         }),
         {

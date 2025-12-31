@@ -7,12 +7,16 @@ interface SearchBarProps {
     value: string;
     onChangeText: (text: string) => void;
     placeholder?: string;
+    onFocus?: () => void;
+    onBlur?: () => void;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
     value,
     onChangeText,
     placeholder,
+    onFocus,
+    onBlur,
 }) => {
     return (
         <View style={styles.container}>
@@ -21,6 +25,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                 value={value}
                 onChangeText={onChangeText}
                 placeholder={placeholder}
+                onFocus={onFocus}
+                onBlur={onBlur}
             />
         </View>
     );
@@ -30,14 +36,11 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#FFFFFF',
-        borderRadius: 12,
+        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        borderRadius: 14,
         paddingHorizontal: 12,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 3,
+        borderWidth: 1,
+        borderColor: 'rgba(255, 255, 255, 0.2)',
     },
     icon: {
         marginRight: 8,
