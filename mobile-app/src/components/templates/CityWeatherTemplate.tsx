@@ -7,21 +7,22 @@ import { getWeatherForecast } from '@/services/weatherService';
 import { WeatherResponse } from '@/types/weather';
 import { getWeatherBackground } from '@/utils/weatherBackgrounds';
 import { WeatherDetailsGrid } from '@/components/organisms/WeatherDetailsGrid';
-import { WeatherLottieIcon } from '@/components/atoms/WeatherLottieIcon';
+import { RadiantSun } from '@/components/molecules/RadiantSun';
 import { WeatherSkeleton } from '@/components/organisms/WeatherSkeleton';
 import { useWeatherUnit } from '@/hooks/useWeatherUnit';
 import { useNetworkStatus } from '@/hooks/useNetworkStatus';
 import { OfflineBanner } from '@/components/atoms/OfflineBanner';
 import { useWeatherStore } from '@/store/useWeatherStore';
 import { useTranslation } from 'react-i18next';
+import { useAppTheme } from '@/hooks/useAppTheme';
 
 interface CityWeatherTemplateProps {
     cityName: string;
 }
 
 /**
- * Template component for displaying city weather with dynamic backgrounds
- * Fetches weather data and applies immersive backgrounds based on conditions
+ * Template component for displaying city weather with dynamic backgrounds (v11)
+ * Features: RadiantSun component, extralight temperature typography, balanced spacing
  */
 export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
     cityName,
@@ -29,6 +30,7 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
     const { t } = useTranslation();
     const { getTemp, getTempUnit } = useWeatherUnit();
     const { isOffline } = useNetworkStatus();
+    const { typography, spacing } = useAppTheme();
     const lastUpdated = useWeatherStore((state) => state.lastUpdated);
     const [weatherData, setWeatherData] = useState<WeatherResponse | null>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -104,26 +106,39 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
                     contentContainerStyle={styles.content}
                     showsVerticalScrollIndicator={false}
                 >
-                    <View style={styles.header}>
-                        <MapPin color="#FFFFFF" size={24} />
-                        <Text style={styles.cityName}>{weatherData.location.name}</Text>
+                    {/* Header with City Name */}
+                    <View style={[styles.header, { marginBottom: spacing.marginSection }]}>
+                        <MapPin color="#FFFFFF" size={20} strokeWidth={2} />
+                        <Text style={[styles.cityName, {
+                            fontSize: typography.sizes.titleSmall,
+                            fontWeight: typography.weights.extrabold,
+                        }]}>
+                            {weatherData.location.name}
+                        </Text>
                     </View>
 
-                    {/* Animated Weather Icon */}
-                    <View style={styles.animationContainer}>
-                        <WeatherLottieIcon
-                            weatherCode={weatherData.current.condition.code}
+                    {/* Radiant Sun Component */}
+                    <View style={[styles.sunContainer, { marginBottom: spacing.marginSection }]}>
+                        <RadiantSun
                             isDay={weatherData.current.is_day}
-                            size={180}
+                            size={200}
                         />
                     </View>
 
-                    <View style={styles.mainWeather}>
-                        <Text style={styles.temperature}>
+                    {/* Temperature and Condition */}
+                    <View style={[styles.mainWeather, { marginBottom: spacing.marginSection }]}>
+                        <Text style={[styles.temperature, {
+                            fontSize: typography.sizes.tempLarge,
+                            fontWeight: typography.weights.extralight,
+                        }]}>
                             {getTemp(weatherData.current.temp_c)}{getTempUnit()}
                         </Text>
-                        <Text style={styles.condition}>
-                            {weatherData.current.condition.text}
+                        <Text style={[styles.condition, {
+                            fontSize: typography.sizes.bodySmall,
+                            fontWeight: typography.weights.bold,
+                            letterSpacing: typography.tracking.widest,
+                        }]}>
+                            {weatherData.current.condition.text.toUpperCase()}
                         </Text>
                     </View>
 
@@ -155,62 +170,39 @@ const styles = StyleSheet.create({
     },
     content: {
         padding: 20,
-        paddingTop: 60,
+        paddingTop: 100,
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 12,
-        marginBottom: 40,
+        justifyContent: 'center',
     },
     cityName: {
-        fontSize: 28,
-        fontWeight: 'bold',
         color: '#FFFFFF',
         textShadowColor: 'rgba(0, 0, 0, 0.3)',
         textShadowOffset: { width: 0, height: 2 },
         textShadowRadius: 4,
     },
-    animationContainer: {
+    sunContainer: {
         alignItems: 'center',
-        marginBottom: 16,
     },
     mainWeather: {
         alignItems: 'center',
-        marginBottom: 24,
+        gap: 8,
     },
     temperature: {
-        fontSize: 96,
-        fontWeight: '200',
         color: '#FFFFFF',
         textShadowColor: 'rgba(0, 0, 0, 0.3)',
         textShadowOffset: { width: 0, height: 2 },
         textShadowRadius: 8,
     },
     condition: {
-        fontSize: 24,
         color: '#FFFFFF',
-        marginBottom: 32,
         textShadowColor: 'rgba(0, 0, 0, 0.3)',
         textShadowOffset: { width: 0, height: 1 },
         textShadowRadius: 4,
-    },
-    placeholder: {
-        fontSize: 14,
-        color: 'rgba(255, 255, 255, 0.7)',
-        textAlign: 'center',
-        fontStyle: 'italic',
-    },
-    loadingContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 16,
-    },
-    loadingText: {
-        fontSize: 18,
-        color: '#FFFFFF',
-        fontWeight: '500',
+        textTransform: 'uppercase',
     },
     errorContainer: {
         flex: 1,

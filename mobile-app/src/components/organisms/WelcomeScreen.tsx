@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import LottieView from 'lottie-react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
-import { Search } from 'lucide-react-native';
+import { MapPin, Search } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { GlassCard } from '@/components/atoms/GlassCard';
 
 export const WelcomeScreen: React.FC = () => {
     const router = useRouter();
     const { t } = useTranslation();
+    const { colors, typography, spacing } = useAppTheme();
     const opacity = useSharedValue(0);
 
     useEffect(() => {
@@ -20,33 +22,69 @@ export const WelcomeScreen: React.FC = () => {
     }));
 
     return (
-        <Animated.View style={[styles.container, animatedStyle]}>
+        <Animated.View style={[styles.container, { backgroundColor: colors.background }, animatedStyle]}>
             <View style={styles.content}>
-                {/* Lottie Animation */}
-                <LottieView
-                    source={require('@/assets/animations/weather-welcome.json')}
-                    autoPlay
-                    loop
-                    style={styles.animation}
-                />
+                {/* Large MapPin Icon */}
+                <View style={styles.iconContainer}>
+                    <GlassCard borderRadius={spacing.borderRadiusCard}>
+                        <View style={styles.iconWrapper}>
+                            <MapPin
+                                color={colors.text}
+                                size={spacing.iconXLarge}
+                                strokeWidth={1.1}
+                            />
+                        </View>
+                    </GlassCard>
+                </View>
 
                 {/* Title */}
-                <Text style={styles.title}>{t('welcome.title')}</Text>
+                <Text style={[styles.title, {
+                    color: colors.text,
+                    fontSize: typography.sizes.titleLarge,
+                    fontWeight: typography.weights.bold,
+                }]}>
+                    {t('welcome.title')}
+                </Text>
 
                 {/* Subtitle */}
-                <Text style={styles.subtitle}>
+                <Text style={[styles.subtitle, {
+                    color: colors.textSecondary,
+                    fontSize: typography.sizes.bodyLarge,
+                }]}>
                     {t('welcome.subtitle')}
                 </Text>
 
-                {/* Action Button */}
+                {/* Coral Button */}
                 <Pressable
                     style={({ pressed }) => [
                         styles.actionButton,
+                        spacing.shadowCoralButton,
                         pressed && styles.actionButtonPressed,
                     ]}
-                    onPress={() => router.push('/(tabs)/search')}>
-                    <Search color="#FFFFFF" size={22} />
-                    <Text style={styles.actionButtonText}>{t('welcome.button')}</Text>
+                    onPress={() => router.push('/(tabs)/search')}
+                >
+                    <Search color="#FFFFFF" size={20} />
+                    <Text style={[styles.actionButtonText, {
+                        fontSize: typography.sizes.bodyLarge,
+                        fontWeight: typography.weights.bold,
+                    }]}>
+                        {t('welcome.button')}
+                    </Text>
+                </Pressable>
+
+                {/* Geolocation Secondary Action */}
+                <Pressable
+                    style={styles.secondaryButton}
+                    onPress={() => {/* TODO: Implement geolocation */ }}
+                >
+                    <Text style={[styles.secondaryButtonText, {
+                        color: colors.text,
+                        fontSize: typography.sizes.bodySmall,
+                        fontWeight: typography.weights.bold,
+                        letterSpacing: typography.tracking.widest,
+                    }]}>
+                        ME GÉOLOCALISER
+                    </Text>
                 </Pressable>
             </View>
         </Animated.View>
@@ -56,47 +94,37 @@ export const WelcomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F3F4F6',
     },
     content: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 32,
+        gap: 24,
     },
-    animation: {
-        width: 280,
-        height: 280,
-        marginBottom: 24,
+    iconContainer: {
+        marginBottom: 16,
+    },
+    iconWrapper: {
+        padding: 40,
     },
     title: {
-        fontSize: 32,
-        fontWeight: 'bold',
-        color: '#1F2937',
-        marginBottom: 16,
         textAlign: 'center',
     },
     subtitle: {
-        fontSize: 16,
-        color: 'rgba(107, 114, 128, 0.9)',
-        marginBottom: 40,
         textAlign: 'center',
         lineHeight: 24,
         maxWidth: 320,
+        marginBottom: 16,
     },
     actionButton: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 12,
         backgroundColor: '#FF6B6B',
-        paddingVertical: 16,
+        paddingVertical: 18,
         paddingHorizontal: 32,
         borderRadius: 16,
-        shadowColor: '#FF6B6B',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-        elevation: 6,
     },
     actionButtonPressed: {
         opacity: 0.85,
@@ -104,7 +132,12 @@ const styles = StyleSheet.create({
     },
     actionButtonText: {
         color: '#FFFFFF',
-        fontSize: 18,
-        fontWeight: '600',
+    },
+    secondaryButton: {
+        paddingVertical: 12,
+    },
+    secondaryButtonText: {
+        textAlign: 'center',
+        textTransform: 'uppercase',
     },
 });

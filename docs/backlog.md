@@ -34,6 +34,6 @@
 | SKY-024 | 6 | Design Tokens & Theme System Update (Colors, Typography, Spacing) | Done | [Report](reports/task_SKY-024.md) |
 | SKY-025 | 6 | Navigation Architecture Pivot (Tabs → Floating Icons) | Done | [Report](reports/task_SKY-025.md) |
 | SKY-026 | 6 | Glassmorphism Components Refactor (glass-dark, glass-light) | Done | [Report](reports/task_SKY-026.md) |
-| SKY-027 | 6 | Dashboard Screen Overhaul (Empty + Main states) | In Progress | - |
-| SKY-028 | 6 | Search & City List Screens Overhaul | Todo | - |
+| SKY-027 | 6 | Dashboard Screen Overhaul (Empty + Main states) | Done | [Report](reports/task_SKY-027.md) |
+| SKY-028 | 6 | Search & City List Screens Overhaul | In Progress | - |
 | SKY-029 | 6 | Settings Screen Overhaul | Todo | - |
