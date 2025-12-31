@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-h: 100vh;
+            background: #05070a;
+            margin: 0;
+        }
+
+        .phone {
+            width: 340px;
+            height: 720px;
+            border-radius: 48px;
+            overflow: hidden;
+            position: relative;
+            border: 8px solid #1e293b;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .phone-light {
+            border-color: #ffffff;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            color: #0f172a;
+        }
+
+        .glass-dark {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 24px;
+        }
+
+        .glass-light {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+        }
+
+        .icon-btn {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+        }
+
+        .btn-coral {
+            background: #FF6B6B;
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .sun-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sun-core {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #fff 0%, #ffdf5d 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px #fff;
+            z-index: 10;
+        }
+
+        .sun-glow {
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
+            filter: blur(35px);
+            animation: pulse 5s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 0.7;
+            }
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100">
+    <div
+        class="phone phone-light bg-[linear-gradient(180deg,#BAE6FD_0%,#E0F2FE_100%)] p-6 flex flex-col overflow-hidden">
+        <div class="absolute top-12 left-6 z-20">
+            <div class="icon-btn glass-light"><i data-lucide="search" size="20"></i></div>
+        </div>
+        <div class="absolute top-12 right-6 z-20">
+            <div class="icon-btn glass-light"><i data-lucide="settings" size="20"></i></div>
+        </div>
+        <div class="flex-1 flex flex-col items-center pt-32 overflow-y-auto no-scrollbar pb-10">
+            <div class="mb-10 text-center">
+                <div class="flex items-center gap-2 justify-center mb-1"><i data-lucide="map-pin" size="16"
+                        class="text-[#1e40af]"></i>
+                    <h2 class="text-xl font-extrabold text-[#0f172a]">Montpellier</h2>
+                </div>
+                <p class="text-[9px] text-[#475569] font-black uppercase tracking-widest">Mercredi 31 Décembre</p>
+            </div>
+            <div class="sun-container mb-10">
+                <div class="sun-glow"></div>
+                <div class="sun-core"></div>
+            </div>
+            <div class="text-center mb-10">
+                <h1 class="text-8xl font-light text-[#0f172a] -mr-3">24°</h1>
+                <p class="text-xs text-[#1e40af] font-black uppercase tracking-[0.5em] mt-3">Ensoleillé</p>
+            </div>
+            <div class="grid grid-cols-2 gap-3 w-full mb-10">
+                <div class="glass-light p-4 flex items-center gap-3 text-[#0f172a]"><i data-lucide="wind" size="18"
+                        class="text-[#1e40af]"></i>
+                    <div>
+                        <p class="text-[8px] uppercase text-[#475569] font-black">Vent</p>
+                        <p class="text-sm font-bold">12 km/h</p>
+                    </div>
+                </div>
+                <div class="glass-light p-4 flex items-center gap-3 text-[#0f172a]"><i data-lucide="droplets" size="18"
+                        class="text-[#1e40af]"></i>
+                    <div>
+                        <p class="text-[8px] uppercase text-[#475569] font-black">Humidité</p>
+                        <p class="text-sm font-bold">45%</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full">
+                <p class="text-[9px] uppercase tracking-widest text-[#475569] mb-4 ml-2 font-black">Prochaines heures
+                </p>
+                <div class="flex gap-3 overflow-x-auto no-scrollbar">
+                    <div class="glass-light min-w-[72px] p-4 flex flex-col items-center gap-2"><span
+                            class="text-[10px] text-[#475569] font-bold">14:00</span><i data-lucide="sun" size="18"
+                            class="text-yellow-600"></i><span class="font-bold text-sm text-[#0f172a]">24°</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

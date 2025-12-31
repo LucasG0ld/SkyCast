@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #05070a;
+            margin: 0;
+        }
+
+        .phone {
+            width: 340px;
+            height: 720px;
+            border-radius: 48px;
+            overflow: hidden;
+            position: relative;
+            border: 8px solid #1e293b;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .phone-light {
+            border-color: #ffffff;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            color: #0f172a;
+        }
+
+        .glass-dark {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 24px;
+        }
+
+        .glass-light {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+        }
+
+        .icon-btn {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+        }
+
+        .btn-coral {
+            background: #FF6B6B;
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .sun-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sun-core {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #fff 0%, #ffdf5d 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px #fff;
+            z-index: 10;
+        }
+
+        .sun-glow {
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
+            filter: blur(35px);
+            animation: pulse 5s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 0.7;
+            }
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900">
+    <div class="phone bg-[#0f172a] p-6 text-white">
+        <div class="flex items-center gap-4 mt-12 mb-8">
+            <div class="icon-btn glass-dark"><i data-lucide="arrow-left" size="20"></i></div>
+            <div class="flex-1 glass-dark h-12 flex items-center px-4"><span class="opacity-30 text-sm">Paris,
+                    Tokyo...</span></div>
+        </div>
+        <p class="text-[10px] uppercase tracking-widest opacity-30 mb-6 font-bold ml-2">Historique</p>
+        <div class="space-y-5 px-2">
+            <div class="flex justify-between items-center opacity-60"><span class="text-sm font-medium">Paris,
+                    France</span><i data-lucide="history" size="14"></i></div>
+            <div class="flex justify-between items-center opacity-60"><span class="text-sm font-medium">Tokyo,
+                    Japon</span><i data-lucide="history" size="14"></i></div>
+        </div>
+    </div>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

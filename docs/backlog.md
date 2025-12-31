@@ -24,3 +24,16 @@
 | SKY-022 | 5 | Expo EAS Build Configuration for Android APK | Done | [Report](reports/task_SKY-022.md) |
 | SKY-023 | 5 | Final Deployment & GitHub Release Setup | Done | [Report](reports/FINAL_PROJECT_SUMMARY.md) |
 | FINAL_POLISH | - | QA Fixes and Code Cleanup | Done | [Report](reports/task_FINAL_POLISH.md) |
+
+---
+
+## Sprint 6: UI Overhaul (v11 Design System)
+
+| ID | Sprint | Task Description | Status | Report Link |
+|---|---|---|---|---|
+| SKY-024 | 6 | Design Tokens & Theme System Update (Colors, Typography, Spacing) | Todo | - |
+| SKY-025 | 6 | Navigation Architecture Pivot (Tabs → Floating Icons) | Todo | - |
+| SKY-026 | 6 | Glassmorphism Components Refactor (glass-dark, glass-light) | Todo | - |
+| SKY-027 | 6 | Dashboard Screen Overhaul (Empty + Main states) | Todo | - |
+| SKY-028 | 6 | Search & City List Screens Overhaul | Todo | - |
+| SKY-029 | 6 | Settings Screen Overhaul | Todo | - |
