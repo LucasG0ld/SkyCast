@@ -1,71 +1,33 @@
 import React from 'react';
-import { Tabs } from 'expo-router';
-import { Platform, StyleSheet } from 'react-native';
-import { BlurView } from 'expo-blur';
-import { Home, Search, Settings } from 'lucide-react-native';
-import { useAppTheme } from '@/hooks/useAppTheme';
+import { Stack } from 'expo-router';
 
+/**
+ * Tab Layout (v11 - Stack Navigation)
+ * Removed bottom tabs in favor of floating icon buttons
+ */
 export default function TabLayout() {
-  const { colors, isDark } = useAppTheme();
-
   return (
-    <Tabs
+    <Stack
       screenOptions={{
-        tabBarActiveTintColor: colors.tabIconSelected,
-        tabBarInactiveTintColor: colors.tabIconDefault,
-        headerShown: true,
-        headerTransparent: true,
-        headerTitleStyle: {
-          color: colors.text,
-        },
-        tabBarStyle: Platform.select({
-          ios: {
-            position: 'absolute',
-            backgroundColor: 'transparent',
-            borderTopWidth: 0,
-          },
-          default: {
-            backgroundColor: colors.tabBar,
-            borderTopWidth: 0.5,
-            borderTopColor: colors.border,
-            elevation: 0,
-            height: 60,
-            paddingBottom: 8,
-          },
-        }),
-        tabBarBackground: () =>
-          Platform.OS === 'ios' ? (
-            <BlurView
-              intensity={80}
-              tint={isDark ? 'dark' : 'light'}
-              style={StyleSheet.absoluteFill}
-            />
-          ) : null,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Weather',
-          headerTitle: 'SkyCast',
-          tabBarIcon: ({ color, size }) => <Home color={color} size={size} />,
-        }}
-      />
-      <Tabs.Screen
+        headerShown: false,
+        animation: 'fade',
+      }}
+    >
+      <Stack.Screen name="index" />
+      <Stack.Screen
         name="search"
         options={{
-          title: 'Search',
-          headerTitle: 'Find Cities',
-          tabBarIcon: ({ color, size }) => <Search color={color} size={size} />,
+          presentation: 'modal',
+          animation: 'slide_from_bottom',
         }}
       />
-      <Tabs.Screen
+      <Stack.Screen
         name="settings"
         options={{
-          title: 'Settings',
-          headerTitle: 'Preferences',
-          tabBarIcon: ({ color, size }) => <Settings color={color} size={size} />,
+          presentation: 'modal',
+          animation: 'slide_from_bottom',
         }}
       />
-    </Tabs>
+    </Stack>
   );
 }
