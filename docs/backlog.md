@@ -31,8 +31,8 @@
 
 | ID | Sprint | Task Description | Status | Report Link |
 |---|---|---|---|---|
-| SKY-024 | 6 | Design Tokens & Theme System Update (Colors, Typography, Spacing) | Todo | - |
-| SKY-025 | 6 | Navigation Architecture Pivot (Tabs → Floating Icons) | Todo | - |
+| SKY-024 | 6 | Design Tokens & Theme System Update (Colors, Typography, Spacing) | Done | [Report](reports/task_SKY-024.md) |
+| SKY-025 | 6 | Navigation Architecture Pivot (Tabs → Floating Icons) | In Progress | - |
 | SKY-026 | 6 | Glassmorphism Components Refactor (glass-dark, glass-light) | Todo | - |
 | SKY-027 | 6 | Dashboard Screen Overhaul (Empty + Main states) | Todo | - |
 | SKY-028 | 6 | Search & City List Screens Overhaul | Todo | - |
