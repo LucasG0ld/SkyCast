@@ -1,89 +1,103 @@
 import React from 'react';
-import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ScrollView, Switch } from 'react-native';
+import { useRouter } from 'expo-router';
+import { ArrowLeft } from 'lucide-react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import { useAppTheme } from '@/hooks/useAppTheme';
-import { Globe, Thermometer, Palette, Check } from 'lucide-react-native';
+import { GlassCard } from '@/components/atoms/GlassCard';
 
 export default function SettingsScreen() {
-    const { t, i18n } = useTranslation();
-    const { colors, isDark } = useAppTheme();
+    const router = useRouter();
+    const insets = useSafeAreaInsets();
+    const { t } = useTranslation();
+    const { colors, typography, spacing, isDark } = useAppTheme();
     const { unit, setUnit, language, setLanguage, theme, setTheme } = useSettingsStore();
 
-    const sections = [
-        {
-            title: t('settings.language'),
-            icon: Globe,
-            options: [
-                { label: 'English', value: 'en' },
-                { label: 'Français', value: 'fr' },
-            ],
-            currentValue: language,
-            onSelect: (val: any) => setLanguage(val),
-        },
-        {
-            title: t('settings.units'),
-            icon: Thermometer,
-            options: [
-                { label: t('units.celsius'), value: 'Celsius' },
-                { label: t('units.fahrenheit'), value: 'Fahrenheit' },
-            ],
-            currentValue: unit,
-            onSelect: (val: any) => setUnit(val),
-        },
-        {
-            title: t('settings.theme'),
-            icon: Palette,
-            options: [
-                { label: t('theme.auto'), value: 'auto' },
-                { label: t('theme.light'), value: 'light' },
-                { label: t('theme.dark'), value: 'dark' },
-            ],
-            currentValue: theme,
-            onSelect: (val: any) => setTheme(val),
-        },
-    ];
+    const coralColor = '#FF6B6B';
 
     return (
-        <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
-            <View style={styles.content}>
-                {sections.map((section, sIndex) => (
-                    <View key={sIndex} style={styles.section}>
-                        <View style={styles.sectionHeader}>
-                            <section.icon size={20} color={colors.accent} />
-                            <Text style={[styles.sectionTitle, { color: colors.text }]}>
-                                {section.title}
-                            </Text>
-                        </View>
-                        <View style={[styles.optionsCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-                            {section.options.map((option, oIndex) => (
-                                <Pressable
-                                    key={oIndex}
-                                    style={[
-                                        styles.optionRow,
-                                        oIndex < section.options.length - 1 && { borderBottomWidth: 0.5, borderBottomColor: colors.border }
-                                    ]}
-                                    onPress={() => section.onSelect(option.value)}
-                                >
-                                    <Text style={[styles.optionLabel, { color: colors.text }]}>
-                                        {option.label}
-                                    </Text>
-                                    {section.currentValue === option.value && (
-                                        <Check size={20} color={colors.accent} />
-                                    )}
-                                </Pressable>
-                            ))}
-                        </View>
-                    </View>
-                ))}
+        <View style={[styles.container, { backgroundColor: colors.background, paddingTop: Math.max(insets.top, spacing.safeAreaTop) }]}>
+            {/* Header: Back Button + Title */}
+            <View style={styles.header}>
+                <Pressable
+                    onPress={() => router.back()}
+                    style={({ pressed }) => [
+                        styles.backButton,
+                        { borderRadius: spacing.borderRadiusIcon, backgroundColor: colors.glass },
+                        pressed && { opacity: 0.7 }
+                    ]}
+                >
+                    <ArrowLeft size={20} color={colors.text} />
+                </Pressable>
 
+                <Text style={[styles.title, {
+                    color: colors.text,
+                    fontSize: typography.sizes.titleSmall,
+                    fontWeight: typography.weights.bold,
+                }]}>
+                    Réglages
+                </Text>
+            </View>
+
+            <ScrollView contentContainerStyle={styles.scrollContent}>
+                {/* Units & Language Group */}
+                <GlassCard style={styles.groupCard}>
+                    {/* Unit Setting */}
+                    <Pressable
+                        style={[styles.settingRow, styles.borderBottom, { borderBottomColor: colors.glassBorder }]}
+                        onPress={() => setUnit(unit === 'Celsius' ? 'Fahrenheit' : 'Celsius')}
+                    >
+                        <Text style={[styles.settingLabel, { color: colors.textSecondary, fontSize: typography.sizes.bodySmall, fontWeight: typography.weights.bold }]}>
+                            Unité
+                        </Text>
+                        <Text style={[styles.settingValue, { color: coralColor, fontSize: typography.sizes.bodySmall, fontWeight: typography.weights.extrabold }]}>
+                            {unit === 'Celsius' ? 'Celsius' : 'Fahrenheit'}
+                        </Text>
+                    </Pressable>
+
+                    {/* Language Setting */}
+                    <Pressable
+                        style={styles.settingRow}
+                        onPress={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
+                    >
+                        <Text style={[styles.settingLabel, { color: colors.textSecondary, fontSize: typography.sizes.bodySmall, fontWeight: typography.weights.bold }]}>
+                            Langue
+                        </Text>
+                        <Text style={[styles.settingValue, { color: coralColor, fontSize: typography.sizes.bodySmall, fontWeight: typography.weights.extrabold }]}>
+                            {language === 'fr' ? 'Français' : 'English'}
+                        </Text>
+                    </Pressable>
+                </GlassCard>
+
+                {/* Dark Mode Group */}
+                <GlassCard style={styles.groupCard}>
+                    <View style={styles.settingRow}>
+                        <Text style={[styles.settingLabel, { color: colors.textSecondary, fontSize: typography.sizes.bodySmall, fontWeight: typography.weights.bold }]}>
+                            Mode Sombre
+                        </Text>
+                        <Switch
+                            value={theme === 'dark'}
+                            onValueChange={(value) => setTheme(value ? 'dark' : 'light')}
+                            trackColor={{ false: '#cbd5e1', true: coralColor }}
+                            thumbColor="#FFFFFF"
+                            ios_backgroundColor="#cbd5e1"
+                        />
+                    </View>
+                </GlassCard>
+
+                {/* Footer */}
                 <View style={styles.footer}>
-                    <Text style={[styles.footerText, { color: colors.textSecondary }]}>
+                    <Text style={[styles.footerText, { color: colors.textSecondary, fontSize: typography.sizes.bodySmall }]}>
                         SkyCast v1.0.0
                     </Text>
+                    <Text style={[styles.footerCredit, { color: colors.textSecondary, fontSize: typography.sizes.bodySmall }]}>
+                        Made with ❤️ by Lucas Gold
+                    </Text>
                 </View>
-            </View>
-        </ScrollView>
+            </ScrollView>
+        </View>
     );
 }
 
@@ -91,46 +105,55 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    content: {
-        padding: 20,
-        paddingTop: 100, // Account for transparent header
-    },
-    section: {
-        marginBottom: 24,
-    },
-    sectionHeader: {
+    header: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 8,
-        marginBottom: 12,
-        paddingHorizontal: 4,
+        paddingHorizontal: 20,
+        gap: 16,
+        marginBottom: 24,
     },
-    sectionTitle: {
-        fontSize: 16,
-        fontWeight: '600',
-        textTransform: 'uppercase',
-        letterSpacing: 0.5,
+    backButton: {
+        width: 44,
+        height: 44,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    optionsCard: {
-        borderRadius: 16,
-        borderWidth: 0.5,
+    title: {
+        flex: 1,
+    },
+    scrollContent: {
+        paddingHorizontal: 20,
+        paddingBottom: 40,
+    },
+    groupCard: {
+        marginBottom: 24,
         overflow: 'hidden',
     },
-    optionRow: {
+    settingRow: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingVertical: 14,
+        paddingVertical: 16,
         paddingHorizontal: 16,
     },
-    optionLabel: {
-        fontSize: 16,
+    borderBottom: {
+        borderBottomWidth: 1,
+    },
+    settingLabel: {
+        textTransform: 'capitalize',
+    },
+    settingValue: {
+        textAlign: 'right',
     },
     footer: {
         marginTop: 40,
         alignItems: 'center',
+        gap: 8,
     },
     footerText: {
-        fontSize: 14,
+        opacity: 0.6,
+    },
+    footerCredit: {
+        opacity: 0.6,
     },
 });

@@ -36,4 +36,5 @@
 | SKY-026 | 6 | Glassmorphism Components Refactor (glass-dark, glass-light) | Done | [Report](reports/task_SKY-026.md) |
 | SKY-027 | 6 | Dashboard Screen Overhaul (Empty + Main states) | Done | [Report](reports/task_SKY-027.md) |
 | SKY-028 | 6 | Search & City List Screens Overhaul | Done | [Report](reports/task_SKY-028.md) |
-| SKY-029 | 6 | Settings Screen Overhaul | In Progress | - |
+| SKY-029 | 6 | Settings Screen Overhaul | Done | [Report](reports/task_SKY-029.md) |
+
