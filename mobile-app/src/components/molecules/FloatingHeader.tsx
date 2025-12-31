@@ -2,9 +2,9 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Search, Settings } from 'lucide-react-native';
-import { BlurView } from 'expo-blur';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAppTheme } from '@/hooks/useAppTheme';
+import { GlassCard } from '@/components/atoms/GlassCard';
 
 /**
  * Floating Header Component (v11)
@@ -14,7 +14,7 @@ import { useAppTheme } from '@/hooks/useAppTheme';
 export const FloatingHeader: React.FC = () => {
     const router = useRouter();
     const insets = useSafeAreaInsets();
-    const { colors, spacing, isDark } = useAppTheme();
+    const { colors, spacing } = useAppTheme();
 
     const topOffset = Math.max(insets.top, spacing.safeAreaTop);
 
@@ -25,20 +25,12 @@ export const FloatingHeader: React.FC = () => {
                 onPress={() => router.push('/(tabs)/search')}
                 activeOpacity={0.7}
             >
-                <BlurView
-                    intensity={spacing.blurIntensity}
-                    tint={isDark ? 'dark' : 'light'}
-                    style={[
-                        styles.iconButton,
-                        {
-                            backgroundColor: colors.glass,
-                            borderColor: colors.glassBorder,
-                            borderRadius: spacing.borderRadiusIcon,
-                        },
-                    ]}
+                <GlassCard
+                    borderRadius={spacing.borderRadiusIcon}
+                    style={styles.iconButton}
                 >
                     <Search size={20} color={colors.text} />
-                </BlurView>
+                </GlassCard>
             </TouchableOpacity>
 
             {/* Settings Button (Top-Right) */}
@@ -46,20 +38,12 @@ export const FloatingHeader: React.FC = () => {
                 onPress={() => router.push('/(tabs)/settings')}
                 activeOpacity={0.7}
             >
-                <BlurView
-                    intensity={spacing.blurIntensity}
-                    tint={isDark ? 'dark' : 'light'}
-                    style={[
-                        styles.iconButton,
-                        {
-                            backgroundColor: colors.glass,
-                            borderColor: colors.glassBorder,
-                            borderRadius: spacing.borderRadiusIcon,
-                        },
-                    ]}
+                <GlassCard
+                    borderRadius={spacing.borderRadiusIcon}
+                    style={styles.iconButton}
                 >
                     <Settings size={20} color={colors.text} />
-                </BlurView>
+                </GlassCard>
             </TouchableOpacity>
         </View>
     );
@@ -79,7 +63,5 @@ const styles = StyleSheet.create({
         height: 44,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 1,
-        overflow: 'hidden',
     },
 });
