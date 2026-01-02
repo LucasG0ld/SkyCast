@@ -29,7 +29,7 @@ export const useSettingsStore = create<SettingsState>()(
         (set) => ({
             // Initial state
             unit: 'Celsius',
-            language: 'en',
+            language: 'fr', // French as default
             theme: 'auto',
             searchHistory: [],
             isHydrated: false,
@@ -51,7 +51,11 @@ export const useSettingsStore = create<SettingsState>()(
             name: 'skycast-settings',
             storage: createJSONStorage(() => AsyncStorage),
             onRehydrateStorage: () => (state) => {
-                state?.setHydrated();
+                // Sync i18n with persisted language when store rehydrates
+                if (state) {
+                    i18n.changeLanguage(state.language);
+                    state.setHydrated();
+                }
             },
         }
     )

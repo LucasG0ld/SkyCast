@@ -83,7 +83,7 @@ export const WelcomeScreen: React.FC = () => {
                         fontWeight: typography.weights.bold,
                         letterSpacing: typography.tracking.widest,
                     }]}>
-                        ME GÉOLOCALISER
+                        {t('welcome.useLocation').toUpperCase()}
                     </Text>
                 </Pressable>
             </View>

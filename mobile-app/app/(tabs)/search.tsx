@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Pressable, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { ArrowLeft, Plus, History, Search as SearchIcon, X } from 'lucide-react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import { SearchBar } from '@/components/molecules/SearchBar';
 import { CityCard } from '@/components/atoms/CityCard';
 import { GlassCard } from '@/components/atoms/GlassCard';
@@ -15,6 +16,7 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 export default function SearchScreen() {
     const router = useRouter();
     const insets = useSafeAreaInsets();
+    const { t } = useTranslation();
     const { colors, typography, spacing } = useAppTheme();
 
     const { query, setQuery, results, isLoading, error } = useSearch();
@@ -32,13 +34,13 @@ export default function SearchScreen() {
     const renderContent = () => {
         // State 1: API Results
         if (query.length > 0) {
-            if (isLoading) return <Text style={[styles.statusText, { color: colors.textSecondary }]}>Searching...</Text>;
-            if (error) return <Text style={[styles.statusText, { color: '#EF4444' }]}>{error}</Text>;
+            if (isLoading) return <Text style={[styles.statusText, { color: colors.textSecondary }]}>{t('search.searching')}</Text>;
+            if (error) return <Text style={[styles.statusText, { color: '#EF4444' }]}>{t('search.error')}</Text>;
 
             return (
                 <View style={styles.listContainer}>
                     <Text style={[styles.sectionTitle, { color: colors.text, fontSize: typography.sizes.bodySmall, fontWeight: typography.weights.bold, letterSpacing: typography.tracking.widest }]}>
-                        RESULTS
+                        {t('search.results').toUpperCase()}
                     </Text>
                     {results.map((city) => (
                         <CityCard
@@ -58,10 +60,10 @@ export default function SearchScreen() {
                 <View style={styles.listContainer}>
                     <View style={styles.sectionHeader}>
                         <Text style={[styles.sectionTitle, { color: colors.text, fontSize: typography.sizes.bodySmall, fontWeight: typography.weights.bold, letterSpacing: typography.tracking.widest }]}>
-                            RECENT SEARCHES
+                            {t('search.recentSearches').toUpperCase()}
                         </Text>
                         <Pressable onPress={clearSearchHistory}>
-                            <Text style={{ color: colors.accent, fontSize: 12 }}>Clear</Text>
+                            <Text style={{ color: colors.accent, fontSize: 12 }}>{t('common.clear')}</Text>
                         </Pressable>
                     </View>
                     {searchHistory.map((city, index) => (
@@ -84,7 +86,7 @@ export default function SearchScreen() {
         return (
             <View style={styles.listContainer}>
                 <Text style={[styles.sectionTitle, { color: colors.text, fontSize: typography.sizes.bodySmall, fontWeight: typography.weights.bold, letterSpacing: typography.tracking.widest }]}>
-                    MY CITIES
+                    {t('search.myCities').toUpperCase()}
                 </Text>
                 {savedCities.length > 0 ? (
                     savedCities.map((city, index) => (
@@ -99,7 +101,7 @@ export default function SearchScreen() {
                     ))
                 ) : (
                     <Text style={[styles.emptyText, { color: colors.textSecondary }]}>
-                        No cities saved yet. Start searching!
+                        {t('search.noCities')}
                     </Text>
                 )}
             </View>
@@ -125,7 +127,7 @@ export default function SearchScreen() {
                     <SearchBar
                         value={query}
                         onChangeText={setQuery}
-                        placeholder="Search for a city..."
+                        placeholder={t('search.placeholder')}
                         onFocus={() => setIsSearchFocused(true)}
                         onBlur={() => setIsSearchFocused(false)}
                     />

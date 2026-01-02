@@ -2,12 +2,18 @@
     "welcome": {
         "title": "Bienvenue sur SkyCast",
         "subtitle": "Votre compagnon météo immersif. Ajoutez votre première ville pour commencer.",
-        "button": "Ajouter une ville"
+        "button": "Ajouter une ville",
+        "useLocation": "Me géolocaliser"
     },
     "search": {
         "placeholder": "Rechercher une ville...",
         "noResults": "Aucune ville trouvée",
-        "searching": "Recherche en cours..."
+        "searching": "Recherche en cours...",
+        "results": "Résultats",
+        "recentSearches": "Recherches récentes",
+        "myCities": "Mes villes",
+        "noCities": "Aucune ville enregistrée. Commencez à rechercher !",
+        "error": "Erreur lors de la recherche"
     },
     "weather": {
         "loading": "Chargement de la météo...",
@@ -33,6 +39,7 @@
         "language": "Langue",
         "units": "Unités",
         "theme": "Thème",
+        "darkMode": "Mode Sombre",
         "about": "À propos"
     },
     "units": {
@@ -52,7 +59,59 @@
         "done": "Terminé",
         "delete": "Supprimer",
         "edit": "Modifier",
+        "clear": "Effacer",
         "offline": "Mode Hors ligne",
         "lastUpdated": "Dernière mise à jour: {{time}}"
+    },
+    "conditions": {
+        "clear": "Ensoleillé",
+        "partlyCloudy": "Partiellement nuageux",
+        "cloudy": "Nuageux",
+        "overcast": "Couvert",
+        "mist": "Brume",
+        "fog": "Brouillard",
+        "freezingFog": "Brouillard givrant",
+        "patchyRainPossible": "Pluie éparse possible",
+        "patchyLightDrizzle": "Bruine légère éparse",
+        "lightDrizzle": "Bruine légère",
+        "freezingDrizzle": "Bruine verglaçante",
+        "heavyFreezingDrizzle": "Bruine verglaçante forte",
+        "patchyLightRain": "Pluie légère éparse",
+        "lightRain": "Pluie légère",
+        "moderateRainAtTimes": "Pluie modérée par moments",
+        "moderateRain": "Pluie modérée",
+        "heavyRainAtTimes": "Forte pluie par moments",
+        "heavyRain": "Forte pluie",
+        "lightFreezingRain": "Pluie verglaçante légère",
+        "moderateOrHeavyFreezingRain": "Pluie verglaçante modérée à forte",
+        "lightRainShower": "Averses légères",
+        "moderateOrHeavyRainShower": "Averses modérées à fortes",
+        "torrentialRainShower": "Averses torrentielles",
+        "patchySnowPossible": "Neige éparse possible",
+        "blowingSnow": "Poudrerie",
+        "blizzard": "Blizzard",
+        "patchyLightSnow": "Neige légère éparse",
+        "lightSnow": "Neige légère",
+        "patchyModerateSnow": "Neige modérée éparse",
+        "moderateSnow": "Neige modérée",
+        "patchyHeavySnow": "Neige forte éparse",
+        "heavySnow": "Forte neige",
+        "icePellets": "Grésil",
+        "lightSnowShowers": "Averses de neige légères",
+        "moderateOrHeavySnowShowers": "Averses de neige modérées à fortes",
+        "lightShowerOfIcePellets": "Averses de grésil légères",
+        "moderateOrHeavyShowerOfIcePellets": "Averses de grésil modérées à fortes",
+        "patchySleetPossible": "Neige fondue éparse possible",
+        "patchyFreezingDrizzlePossible": "Bruine verglaçante éparse possible",
+        "lightSleet": "Neige fondue légère",
+        "moderateOrHeavySleet": "Neige fondue modérée à forte",
+        "lightSleetShowers": "Averses de neige fondue légères",
+        "moderateOrHeavySleetShowers": "Averses de neige fondue modérées à fortes",
+        "thunderyOutbreaksPossible": "Orages possibles",
+        "patchyLightRainWithThunder": "Pluie légère éparse avec tonnerre",
+        "moderateOrHeavyRainWithThunder": "Pluie modérée à forte avec tonnerre",
+        "patchyLightSnowWithThunder": "Neige légère éparse avec tonnerre",
+        "moderateOrHeavySnowWithThunder": "Neige modérée à forte avec tonnerre",
+        "unknown": "Conditions inconnues"
     }
 }

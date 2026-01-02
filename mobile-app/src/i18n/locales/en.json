@@ -2,12 +2,18 @@
     "welcome": {
         "title": "Welcome to SkyCast",
         "subtitle": "Your immersive weather companion. Add your first city to get started.",
-        "button": "Add a City"
+        "button": "Add a City",
+        "useLocation": "Use My Location"
     },
     "search": {
         "placeholder": "Search for a city...",
         "noResults": "No cities found",
-        "searching": "Searching..."
+        "searching": "Searching...",
+        "results": "Results",
+        "recentSearches": "Recent Searches",
+        "myCities": "My Cities",
+        "noCities": "No cities saved yet. Start searching!",
+        "error": "Search error"
     },
     "weather": {
         "loading": "Loading weather...",
@@ -33,6 +39,7 @@
         "language": "Language",
         "units": "Units",
         "theme": "Theme",
+        "darkMode": "Dark Mode",
         "about": "About"
     },
     "units": {
@@ -52,7 +59,59 @@
         "done": "Done",
         "delete": "Delete",
         "edit": "Edit",
+        "clear": "Clear",
         "offline": "Offline Mode",
         "lastUpdated": "Last updated: {{time}}"
+    },
+    "conditions": {
+        "clear": "Clear",
+        "partlyCloudy": "Partly cloudy",
+        "cloudy": "Cloudy",
+        "overcast": "Overcast",
+        "mist": "Mist",
+        "fog": "Fog",
+        "freezingFog": "Freezing fog",
+        "patchyRainPossible": "Patchy rain possible",
+        "patchyLightDrizzle": "Patchy light drizzle",
+        "lightDrizzle": "Light drizzle",
+        "freezingDrizzle": "Freezing drizzle",
+        "heavyFreezingDrizzle": "Heavy freezing drizzle",
+        "patchyLightRain": "Patchy light rain",
+        "lightRain": "Light rain",
+        "moderateRainAtTimes": "Moderate rain at times",
+        "moderateRain": "Moderate rain",
+        "heavyRainAtTimes": "Heavy rain at times",
+        "heavyRain": "Heavy rain",
+        "lightFreezingRain": "Light freezing rain",
+        "moderateOrHeavyFreezingRain": "Moderate or heavy freezing rain",
+        "lightRainShower": "Light rain shower",
+        "moderateOrHeavyRainShower": "Moderate or heavy rain shower",
+        "torrentialRainShower": "Torrential rain shower",
+        "patchySnowPossible": "Patchy snow possible",
+        "blowingSnow": "Blowing snow",
+        "blizzard": "Blizzard",
+        "patchyLightSnow": "Patchy light snow",
+        "lightSnow": "Light snow",
+        "patchyModerateSnow": "Patchy moderate snow",
+        "moderateSnow": "Moderate snow",
+        "patchyHeavySnow": "Patchy heavy snow",
+        "heavySnow": "Heavy snow",
+        "icePellets": "Ice pellets",
+        "lightSnowShowers": "Light snow showers",
+        "moderateOrHeavySnowShowers": "Moderate or heavy snow showers",
+        "lightShowerOfIcePellets": "Light showers of ice pellets",
+        "moderateOrHeavyShowerOfIcePellets": "Moderate or heavy showers of ice pellets",
+        "patchySleetPossible": "Patchy sleet possible",
+        "patchyFreezingDrizzlePossible": "Patchy freezing drizzle possible",
+        "lightSleet": "Light sleet",
+        "moderateOrHeavySleet": "Moderate or heavy sleet",
+        "lightSleetShowers": "Light sleet showers",
+        "moderateOrHeavySleetShowers": "Moderate or heavy sleet showers",
+        "thunderyOutbreaksPossible": "Thundery outbreaks possible",
+        "patchyLightRainWithThunder": "Patchy light rain with thunder",
+        "moderateOrHeavyRainWithThunder": "Moderate or heavy rain with thunder",
+        "patchyLightSnowWithThunder": "Patchy light snow with thunder",
+        "moderateOrHeavySnowWithThunder": "Moderate or heavy snow with thunder",
+        "unknown": "Unknown conditions"
     }
 }

@@ -37,7 +37,7 @@ export default function SettingsScreen() {
                     fontSize: typography.sizes.titleSmall,
                     fontWeight: typography.weights.bold,
                 }]}>
-                    Réglages
+                    {t('settings.title')}
                 </Text>
             </View>
 
@@ -50,7 +50,7 @@ export default function SettingsScreen() {
                         onPress={() => setUnit(unit === 'Celsius' ? 'Fahrenheit' : 'Celsius')}
                     >
                         <Text style={[styles.settingLabel, { color: colors.textSecondary, fontSize: typography.sizes.bodySmall, fontWeight: typography.weights.bold }]}>
-                            Unité
+                            {t('settings.units')}
                         </Text>
                         <Text style={[styles.settingValue, { color: coralColor, fontSize: typography.sizes.bodySmall, fontWeight: typography.weights.extrabold }]}>
                             {unit === 'Celsius' ? 'Celsius' : 'Fahrenheit'}
@@ -63,7 +63,7 @@ export default function SettingsScreen() {
                         onPress={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
                     >
                         <Text style={[styles.settingLabel, { color: colors.textSecondary, fontSize: typography.sizes.bodySmall, fontWeight: typography.weights.bold }]}>
-                            Langue
+                            {t('settings.language')}
                         </Text>
                         <Text style={[styles.settingValue, { color: coralColor, fontSize: typography.sizes.bodySmall, fontWeight: typography.weights.extrabold }]}>
                             {language === 'fr' ? 'Français' : 'English'}
@@ -75,7 +75,7 @@ export default function SettingsScreen() {
                 <GlassCard style={styles.groupCard}>
                     <View style={styles.settingRow}>
                         <Text style={[styles.settingLabel, { color: colors.textSecondary, fontSize: typography.sizes.bodySmall, fontWeight: typography.weights.bold }]}>
-                            Mode Sombre
+                            {t('settings.darkMode')}
                         </Text>
                         <Switch
                             value={theme === 'dark'}

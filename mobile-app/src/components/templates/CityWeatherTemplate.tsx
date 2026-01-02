@@ -15,6 +15,7 @@ import { OfflineBanner } from '@/components/atoms/OfflineBanner';
 import { useWeatherStore } from '@/store/useWeatherStore';
 import { useTranslation } from 'react-i18next';
 import { useAppTheme } from '@/hooks/useAppTheme';
+import { getWeatherConditionKey } from '@/utils/weatherConditions';
 
 interface CityWeatherTemplateProps {
     cityName: string;
@@ -138,7 +139,7 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
                             fontWeight: typography.weights.bold,
                             letterSpacing: typography.tracking.widest,
                         }]}>
-                            {weatherData.current.condition.text.toUpperCase()}
+                            {t(getWeatherConditionKey(weatherData.current.condition.code)).toUpperCase()}
                         </Text>
                     </View>
 

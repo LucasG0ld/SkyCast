@@ -15,15 +15,15 @@ const resources = {
     fr: { translation: fr },
 };
 
-// Get device language
-const deviceLanguage = Localization.getLocales()[0]?.languageCode || 'en';
+// Get device language, default to French
+const deviceLanguage = Localization.getLocales()[0]?.languageCode || 'fr';
 
 i18n
     .use(initReactI18next)
     .init({
         resources,
-        lng: deviceLanguage,
-        fallbackLng: 'en',
+        lng: 'fr', // Default to French
+        fallbackLng: 'fr', // Fallback to French
         compatibilityJSON: 'v4',
         interpolation: {
             escapeValue: false,
