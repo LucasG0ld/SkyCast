@@ -1,0 +1,55 @@
+// Load environment variables from .env file
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+
+module.exports = {
+  expo: {
+    name: "mobile-app",
+    slug: "mobile-app",
+    version: "1.0.0",
+    orientation: "portrait",
+    icon: "./assets/images/icon.png",
+    scheme: "mobileapp",
+    userInterfaceStyle: "automatic",
+    newArchEnabled: true,
+    splash: {
+      image: "./assets/images/splash-icon.png",
+      resizeMode: "contain",
+      backgroundColor: "#ffffff"
+    },
+    ios: {
+      supportsTablet: true,
+      bundleIdentifier: "com.lucasgold.skycast"
+    },
+    android: {
+      adaptiveIcon: {
+        foregroundImage: "./assets/images/adaptive-icon.png",
+        backgroundColor: "#ffffff"
+      },
+      package: "com.lucasgold.skycast",
+      edgeToEdgeEnabled: true,
+      predictiveBackGestureEnabled: false
+    },
+    web: {
+      bundler: "metro",
+      output: "static",
+      favicon: "./assets/images/favicon.png"
+    },
+    plugins: [
+      "expo-router",
+      "expo-localization"
+    ],
+    experiments: {
+      typedRoutes: true
+    },
+    extra: {
+      router: {},
+      eas: {
+        projectId: "1331fe54-f8d0-4c75-9037-9dfb7f49dfad"
+      },
+      // API key from EAS Secret (production) or local fallback (development)
+      // REPLACE 'YOUR_API_KEY_HERE' with your actual WeatherAPI key
+      EXPO_PUBLIC_WEATHER_API_KEY: process.env.EXPO_PUBLIC_WEATHER_API_KEY || "YOUR_API_KEY_HERE"
+    }
+  }
+};

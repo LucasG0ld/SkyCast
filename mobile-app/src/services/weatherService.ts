@@ -1,8 +1,12 @@
 import axios, { AxiosInstance, AxiosError } from 'axios';
+import Constants from 'expo-constants';
 import { WeatherResponse, SearchResult } from '@/types/weather';
 
 const BASE_URL = 'https://api.weatherapi.com/v1';
-const API_KEY = process.env.EXPO_PUBLIC_WEATHER_API_KEY;
+const API_KEY = Constants.expoConfig?.extra?.EXPO_PUBLIC_WEATHER_API_KEY;
+
+// Debug: Verify API key is loaded (DO NOT log actual key value)
+console.log('API Key check:', !!API_KEY, 'Length:', API_KEY?.length || 0);
 
 // Custom error class for Weather API errors
 export class WeatherAPIError extends Error {
