@@ -7,7 +7,6 @@ import { getWeatherForecast } from '@/services/weatherService';
 import { WeatherResponse } from '@/types/weather';
 import { getWeatherBackground } from '@/utils/weatherBackgrounds';
 import { WeatherDetailsGrid } from '@/components/organisms/WeatherDetailsGrid';
-import { RadiantSun } from '@/components/molecules/RadiantSun';
 import { WeatherSkeleton } from '@/components/organisms/WeatherSkeleton';
 import { useWeatherUnit } from '@/hooks/useWeatherUnit';
 import { useNetworkStatus } from '@/hooks/useNetworkStatus';
@@ -16,6 +15,8 @@ import { useWeatherStore } from '@/store/useWeatherStore';
 import { useTranslation } from 'react-i18next';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { getWeatherConditionKey } from '@/utils/weatherConditions';
+import LottieView from 'lottie-react-native';
+import { getWeatherLottieScene } from '@/utils/weatherLottieScenes';
 
 interface CityWeatherTemplateProps {
     cityName: string;
@@ -118,11 +119,16 @@ export const CityWeatherTemplate: React.FC<CityWeatherTemplateProps> = ({
                         </Text>
                     </View>
 
-                    {/* Radiant Sun Component */}
-                    <View style={[styles.sunContainer, { marginBottom: spacing.marginSection }]}>
-                        <RadiantSun
-                            isDay={weatherData.current.is_day}
-                            size={200}
+                    {/* Weather Hero - Single Lottie Scene */}
+                    <View style={[styles.weatherHero, { marginBottom: spacing.marginSection }]}>
+                        <LottieView
+                            source={getWeatherLottieScene(
+                                weatherData.current.condition.code,
+                                weatherData.current.is_day
+                            )}
+                            autoPlay
+                            loop
+                            style={styles.lottieHero}
                         />
                     </View>
 
@@ -185,8 +191,15 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: 0, height: 2 },
         textShadowRadius: 4,
     },
-    sunContainer: {
+    weatherHero: {
         alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: 300,
+    },
+    lottieHero: {
+        width: 300,
+        height: 300,
     },
     mainWeather: {
         alignItems: 'center',

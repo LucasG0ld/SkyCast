@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import LottieView from 'lottie-react-native';
-import { getWeatherAnimation, getAnimationName } from '@/utils/weatherAnimations';
+import { getWeatherLottieScene } from '@/utils/weatherLottieScenes';
 
 interface WeatherLottieIconProps {
     weatherCode: number;
@@ -18,8 +18,7 @@ export const WeatherLottieIcon: React.FC<WeatherLottieIconProps> = ({
     isDay,
     size = 200,
 }) => {
-    const animationSource = getWeatherAnimation(weatherCode, isDay);
-    const animationName = getAnimationName(weatherCode, isDay);
+    const animationSource = getWeatherLottieScene(weatherCode, isDay);
 
     return (
         <View style={[styles.container, { width: size, height: size }]}>
